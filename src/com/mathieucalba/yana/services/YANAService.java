@@ -6,17 +6,16 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.mathieucalba.yana.BuildConfig;
-import com.mathieucalba.yana.R;
 
 
 public class YANAService extends IntentService {
 
 	private static final String TAG = YANAService.class.getSimpleName();
 
-	private static final String EXTRA_API_ID = "com.mathieucalba.yana.EXTRA_API_ID";
+	public static final String EXTRA_API_ID = "com.mathieucalba.yana.EXTRA_API_ID";
 
 	private static final int DEFAULT_API_ID = -1;
-	private static final int API_INIT = 1301222226;
+	public static final int API_INIT = 1301222226;
 
 	public YANAService() {
 		super(TAG);
@@ -33,7 +32,7 @@ public class YANAService extends IntentService {
 			return;
 		}
 
-		final int idApi = extras.getInt(EXTRA_API_ID, -1);
+		final int idApi = extras.getInt(EXTRA_API_ID, DEFAULT_API_ID);
 		switch (idApi) {
 			case API_INIT:
 				initData();
