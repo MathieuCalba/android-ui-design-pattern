@@ -1,9 +1,11 @@
-package com.mathieucalba.yana;
+package com.mathieucalba.yana.services;
 
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.mathieucalba.yana.BuildConfig;
 import com.mathieucalba.yana.R;
 
 
