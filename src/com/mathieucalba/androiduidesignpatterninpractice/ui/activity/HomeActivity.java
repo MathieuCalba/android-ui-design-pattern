@@ -1,4 +1,8 @@
-package com.mathieucalba.androiduidesignpatterninpractice;
+package com.mathieucalba.androiduidesignpatterninpractice.ui.activity;
+
+import com.mathieucalba.androiduidesignpatterninpractice.R;
+import com.mathieucalba.androiduidesignpatterninpractice.R.layout;
+import com.mathieucalba.androiduidesignpatterninpractice.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
