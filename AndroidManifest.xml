@@ -35,6 +35,11 @@
         <service
             android:name="com.mathieucalba.yana.services.YANAService"
             android:exported="false" />
+
+        <provider
+            android:name="com.mathieucalba.yana.provider.YANAProvider"
+            android:authorities="com.mathieucalba.yana.provider"
+            android:exported="false" />
     </application>
 
 </manifest>
