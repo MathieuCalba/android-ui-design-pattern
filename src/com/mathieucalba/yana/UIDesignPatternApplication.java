@@ -1,6 +1,7 @@
-package com.mathieucalba.androiduidesignpatterninpractice;
+package com.mathieucalba.yana;
 
 import android.app.Application;
+import com.mathieucalba.yana.R;
 
 public class UIDesignPatternApplication extends Application {
 

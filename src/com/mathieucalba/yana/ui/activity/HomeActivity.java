@@ -1,8 +1,8 @@
-package com.mathieucalba.androiduidesignpatterninpractice.ui.activity;
+package com.mathieucalba.yana.ui.activity;
 
-import com.mathieucalba.androiduidesignpatterninpractice.R;
-import com.mathieucalba.androiduidesignpatterninpractice.R.layout;
-import com.mathieucalba.androiduidesignpatterninpractice.R.menu;
+import com.mathieucalba.yana.R;
+import com.mathieucalba.yana.R.layout;
+import com.mathieucalba.yana.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
