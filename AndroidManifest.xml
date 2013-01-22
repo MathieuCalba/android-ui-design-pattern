@@ -33,7 +33,7 @@
         </activity>
 
         <service
-            android:name="com.mathieucalba.yana.YANAService"
+            android:name="com.mathieucalba.yana.services.YANAService"
             android:exported="false" />
     </application>
 
