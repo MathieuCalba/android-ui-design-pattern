@@ -4,5 +4,106 @@
     <string name="app_name">YANA</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="html_content">
+<![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><title>Lorem Ipsum - All the facts - Lipsum generator</title><meta name="keywords" content="Lorem Ipsum, Lipsum, Lorem, Ipsum, Text, Generate, Generator, Facts, Information, What, Why, Where, Dummy Text, Typesetting, Printing, de Finibus, Bonorum et Malorum, de Finibus Bonorum et Malorum, Extremes of Good and Evil, Cicero, Latin, Garbled, Scrambled, Lorem ipsum dolor sit amet, dolor, sit amet, consectetur, adipiscing, elit, sed, eiusmod, tempor, incididunt"><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><meta content="en" http-equiv="content-language"><link href="http://www.lipsum.com/favicon.ico" rel="shortcut icon"><style type="text/css">#lipsum {font-size:11px;text-align:justify}
+#generated {font-size:11px;font-weight:bold;text-align:left}
+#lipsumta {font-size:11px;text-align:justify;font-family:Arial,Helvetica,sans;width:700px;height:300px;padding:3px 0px 3px 5px;border:1px solid #666;margin:0px 0px 5px 0px}
+
+a:link,a:visited,a:active {color:#000000}
+a:hover {color:#ff0000}
+
+body {font-family:Arial,Helvetica,sans}
+body,td,input,form,div {margin:0;font-size:11px;font-family:Arial,Helvetica,sans}
+#Outer {text-align:center}
+#Inner710 {width:710px;margin:0px auto;padding-bottom:10px}
+#Inner734 {width:734px;margin:0px auto;padding-bottom:10px}
+#BannerO {margin:0px auto;width:734px}
+#BannerI {text-align:center;margin-top:15px}
+#Languages {margin:20px 0px;clear:both}
+#Languages a {padding:0px 6px 0px 22px;font-size:11px;line-height:20px}
+#Languages a.zz, #Languages a.zz:hover {text-decoration:none;color:#000000}
+#Languages a.xx {padding:0px}
+#Languages img {vertical-align:middle;margin-right:4px}
+
+#Packages a {margin:0px 5px}
+#Footer a {margin:10px;color:#808080}
+.lc {clear:left;float:left;width:348px}
+.rc {clear:right;float:right;width:348px}
+.lc div {float:left;text-align:left}
+.rc div {float:left;text-align:left}
+
+p {text-align:justify;font-size:11px;line-height:14px;margin:0px 0px 14px 0px;padding:0}
+
+h1,h2,h3,h4,h5 {margin:0;padding:0;font-weight:normal}
+h1 {background:url(/images/lorem.gif) no-repeat center top;height:60px}
+h1 span {display:none}
+h2 {font-size:12px;height:26px;text-align:left}
+h2 span {display:none}
+h3 {margin-bottom:14px;font-size:11px;font-weight:bold;text-align:left}
+h4 {margin-top:14px;font-size:13px;text-align:center;font-style:italic}
+h5 {margin-bottom:14px;font-size:11px;text-align:center}
+
+.box {clear:both;margin-top:6px;padding-top:6px;border-top:1px solid #666666}
+.banners {clear:both;margin-top:14px;padding-top:14px;border-top:1px solid #d0d0d0}
+.banners img {margin:2px}
+
+a.lnk:link,a.lnk:visited,a.lnk:active,a.lnk:hover {font-weight:bold;color:#ff0000}
+
+input#amount {width:40px;text-align:right}
+input#generate {width:160px;text-align:center;margin-top:15px}
+
+div.start {width:30px;margin-top:4px;margin-bottom:12px;text-align:center}
+
+#HdrLeft {float:left;text-align:left;width:160px}
+#HdrRight {float:right;text-align:right;width:160px;line-height:14px}
+
+#feedtable td {text-align:left;vertical-align:middle}
+#typetable td {text-align:left;vertical-align:middle;height:20px}
+
+#Partner {text-align:left;margin:0;padding:0}
+#Partner h1 {background:none;font-size:20px;height:20px;margin:0;padding:0;font-weight:bold}
+#Partner h2 {background:none;font-size:14px;height:14px;margin:0;padding:0;font-weight:bold}
+
+.ltr {direction:ltr;unicode-bidi:embed}</style></link></meta></meta></meta></head><body><div class="box"><div style="float:right;margin-left:6px;margin-bottom:6px;"><a href="http://imcreator.com/?utm_source=lipsum_vert&amp;utm_medium=banner&amp;utm_content=vert&amp;utm_campaign=design_your_website_2" target="_blank"><img alt="Design Your Website" border="0" height="400" src="html_fichiers/lipsum_100_400.gif" width="100"></img></a><br><a href="http://www.cafepress.com/lipsum/" target="_blank"><img alt="Lipsum" border="0" height="100" src="html_fichiers/lipsum07.gif" width="100"></img></a><br></br></br></div><div id="lipsum"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque 
+sit amet facilisis felis. Aliquam faucibus suscipit venenatis. Duis 
+interdum sollicitudin enim, at posuere nunc mattis blandit. In 
+dignissim, quam sit amet feugiat sagittis, massa velit ornare lacus, a 
+ultricies mi nunc sed dui. Lorem ipsum dolor sit amet, consectetur 
+adipiscing elit. Aliquam erat volutpat. Nunc non libero commodo quam 
+volutpat venenatis. Donec eu orci lacus. Morbi magna mauris, rutrum nec 
+pellentesque vitae, congue sit amet massa. In hendrerit eros eu leo 
+suscipit condimentum. Nulla scelerisque pellentesque bibendum. In hac 
+habitasse platea dictumst.</p><p>Sed commodo, tortor commodo lacinia aliquam, augue risus ornare dolor, 
+at molestie massa tortor eu elit. Pellentesque habitant morbi tristique 
+senectus et netus et malesuada fames ac turpis egestas. Sed pretium orci
+ eget augue feugiat dapibus. Nulla ligula dui, imperdiet porttitor 
+aliquet a, dictum et nunc. Vestibulum sollicitudin lacus vel ipsum 
+tristique semper. Proin tempor imperdiet leo id viverra. Vivamus 
+pellentesque blandit dui. Aliquam metus sem, ullamcorper et sagittis 
+faucibus, convallis vitae magna.</p><p>Morbi at nisi lacus, sed condimentum risus. Etiam dignissim hendrerit 
+ipsum, vitae sagittis odio ultricies et. Phasellus tortor massa, gravida
+ eu accumsan eget, aliquam sed lectus. Nulla tincidunt eleifend 
+pellentesque. Pellentesque odio tellus, laoreet eu vehicula id, laoreet 
+sollicitudin dui. Nam ornare nibh eget massa blandit a pharetra sapien 
+fermentum. Nullam porta libero vel ligula consequat vel accumsan mi 
+varius. Quisque posuere nunc eu mauris congue sit amet elementum tellus 
+rutrum. Donec at sem odio. Morbi malesuada, mauris sit amet placerat 
+condimentum, risus enim lacinia dui, sit amet posuere massa lectus a 
+dolor. Etiam tortor lorem, molestie vitae tristique ut, ullamcorper 
+pulvinar ligula. Aliquam porta ullamcorper felis, vel consectetur nulla 
+suscipit sed.</p><p>Sed tellus metus, consequat ut consectetur nec, lobortis quis lectus. 
+Nullam in lectus risus, quis luctus sapien. Aliquam quis dolor mauris, 
+vel tempor enim. Curabitur consequat aliquet tincidunt. Maecenas a nibh 
+quam. Sed auctor nisi quis ante consequat non sagittis lectus iaculis. 
+Nullam lacus nisi, consequat vel porttitor sit amet, feugiat non nisl. 
+In hac habitasse platea dictumst. Aliquam porttitor sollicitudin purus, 
+scelerisque viverra est elementum eget.</p><p>Fusce luctus purus vitae ante ullamcorper rhoncus. Nulla aliquam aliquam
+ tellus, nec venenatis arcu imperdiet mattis. Praesent et turpis vel 
+ante accumsan iaculis ac sollicitudin justo. Quisque nisi elit, pretium 
+ultrices convallis eget, scelerisque ut metus. Donec ut ligula nulla, 
+cursus aliquet ante. Pellentesque sed nisl arcu. Proin fermentum auctor 
+est, non aliquet risus consequat nec. Praesent sed felis nisi.</p></div></div></body></html>]]>
+    </string>
 
 </resources>
