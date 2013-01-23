@@ -1,14 +1,14 @@
 package com.mathieucalba.yana.ui.activity;
 
-
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 
 import com.mathieucalba.yana.R;
 import com.mathieucalba.yana.utils.ServiceUtils;
 
 
-public class HomeActivity extends Activity implements LoaderCallbacks<Cursor> {
+public class HomeActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
