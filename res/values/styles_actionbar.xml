@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     File created by the Android Action Bar Style Generator
+
+     Copyright (C) 2012 readyState Software Ltd
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+
+    <style name="Yana_actionbar" parent="@style/Yana_component">
+        <item name="actionBarItemBackground">@drawable/selectable_background_yana</item>
+        <item name="popupMenuStyle">@style/yana_PopupMenu</item>
+        <item name="dropDownListViewStyle">@style/yana_DropDownListView</item>
+        <item name="actionBarTabStyle">@style/yana_ActionBarTabStyle</item>
+        <item name="actionDropDownStyle">@style/yana_DropDownNav</item>
+        <item name="actionBarStyle">@style/yana_solid_ActionBar</item>
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_yana</item>
+        <item name="android:popupMenuStyle">@style/yana_PopupMenu</item>
+        <item name="android:dropDownListViewStyle">@style/yana_DropDownListView</item>
+        <item name="android:actionBarTabStyle">@style/yana_ActionBarTabStyle</item>
+        <item name="android:actionDropDownStyle">@style/yana_DropDownNav</item>
+        <item name="android:actionBarStyle">@style/yana_solid_ActionBar</item>
+        <item name="android:panelBackground">@drawable/menu_hardkey_panel_yana</item>
+
+        <!-- Light.DarkActionBar specific -->
+        <item name="actionBarWidgetTheme">@style/Theme.yana.widget</item>
+        <item name="android:actionBarWidgetTheme">@style/Theme.yana.widget</item>
+    </style>
+
+    <style name="yana_solid_ActionBar" parent="@style/Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+        <item name="background">@drawable/ab_solid_yana</item>
+        <item name="backgroundStacked">@drawable/ab_stacked_solid_yana</item>
+        <item name="backgroundSplit">@drawable/ab_bottom_solid_yana</item>
+        <item name="progressBarStyle">@style/yana_ProgressBar</item>
+        <item name="android:background">@drawable/ab_solid_yana</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_yana</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_yana</item>
+        <item name="android:progressBarStyle">@style/yana_ProgressBar</item>
+    </style>
+
+    <style name="yana_transparent_ActionBar" parent="@style/Widget.Sherlock.ActionBar">
+        <item name="background">@drawable/ab_transparent_yana</item>
+        <item name="progressBarStyle">@style/yana_ProgressBar</item>
+        <item name="android:background">@drawable/ab_transparent_yana</item>
+        <item name="android:progressBarStyle">@style/yana_ProgressBar</item>
+    </style>
+
+    <style name="yana_PopupMenu" parent="@style/Widget.Sherlock.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_yana</item>
+    </style>
+
+    <style name="yana_DropDownListView" parent="@style/Widget.Sherlock.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_yana</item>
+    </style>
+
+    <style name="yana_ActionBarTabStyle" parent="@style/Widget.Sherlock.ActionBar.TabView">
+        <item name="background">@drawable/tab_indicator_ab_yana</item>
+        <item name="android:background">@drawable/tab_indicator_ab_yana</item>
+    </style>
+
+    <style name="yana_DropDownNav" parent="@style/Widget.Sherlock.Spinner.DropDown.ActionBar">
+        <item name="background">@drawable/spinner_background_ab_yana</item>
+        <item name="android:background">@drawable/spinner_background_ab_yana</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_yana</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_yana</item>
+    </style>
+
+    <style name="yana_ProgressBar" parent="@style/Widget.Sherlock.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_yana</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.yana.widget" parent="@style/Theme.Sherlock">
+        <item name="popupMenuStyle">@style/yana_PopupMenu</item>
+        <item name="dropDownListViewStyle">@style/yana_DropDownListView</item>
+        <item name="android:popupMenuStyle">@style/yana_PopupMenu</item>
+        <item name="android:dropDownListViewStyle">@style/yana_DropDownListView</item>
+    </style>
+
+</resources>

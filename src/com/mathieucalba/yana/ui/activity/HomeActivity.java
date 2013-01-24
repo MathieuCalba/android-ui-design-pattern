@@ -1,14 +1,14 @@
 package com.mathieucalba.yana.ui.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
 import com.mathieucalba.yana.R;
 import com.mathieucalba.yana.utils.ServiceUtils;
 
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends SherlockActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class HomeActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_home, menu);
+		getSupportMenuInflater().inflate(R.menu.activity_home, menu);
 		return true;
 	}
 

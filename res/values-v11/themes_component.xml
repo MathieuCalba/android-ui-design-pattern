@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Yana_component" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:editTextBackground">@drawable/edit_text_holo_light</item>
+        <item name="android:buttonStyle">@style/ButtonYanaTheme</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonYanaTheme</item>
+        <item name="android:progressBarStyleHorizontal">@style/ProgressBarYanaTheme</item>
+        <item name="android:buttonStyleToggle">@style/ToggleYanaTheme</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_light</item>
+        <item name="android:activatedBackgroundIndicator">@drawable/activated_background_holo_light</item>
+    </style>
+
+</resources>

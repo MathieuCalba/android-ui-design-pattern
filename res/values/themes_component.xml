@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Yana_component" parent="Theme.Sherlock.Light.DarkActionBar">
+        <item name="android:editTextStyle">@style/EditTextYanaTheme</item>
+        <item name="android:buttonStyle">@style/ButtonYanaTheme</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonYanaTheme</item>
+        <item name="android:progressBarStyleHorizontal">@style/ProgressBarYanaTheme</item>
+        <item name="android:buttonStyleToggle">@style/ToggleYanaTheme</item>
+        <item name="android:listViewStyle">@style/ListViewYanaTheme</item>
+        <item name="android:listViewWhiteStyle">@style/ListViewYanaTheme.White</item>
+        <item name="android:spinnerItemStyle">@style/SpinnerItemYanaTheme</item>
+    </style>
+
+</resources>
