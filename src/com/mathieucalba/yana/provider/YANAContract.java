@@ -10,7 +10,7 @@ public class YANAContract {
 	protected static String VENDOR_NAME = "vnd.mathieucalba.yana";
 
 	protected static final String PATH_ARTICLE = "article";
-	protected static final String PATH_TYPE = "type";
+	protected static final String PATH_FEED = "feed";
 
 	public interface Tables {
 		static final String ARTICLE = "article";
@@ -68,15 +68,15 @@ public class YANAContract {
 			public static int TIMESTAMP = 8;
 
 			public static String[] COLS = new String[] { //
-				StandardColumns._ID, //
-				Tables.ARTICLE + "." + ArticleColumns.ID, //
-				Tables.ARTICLE + "." + ArticleColumns.TITLE, //
-				Tables.ARTICLE + "." + ArticleColumns.IMAGE_URL, //
-				Tables.ARTICLE + "." + ArticleColumns.HEADER, //
-				Tables.ARTICLE + "." + ArticleColumns.CONTENT, //
-				Tables.ARTICLE + "." + ArticleColumns.AUTHOR, //
-				Tables.ARTICLE + "." + ArticleColumns.FEED_ID, //
-				Tables.ARTICLE + "." + ArticleColumns.TIMESTAMP //
+					StandardColumns._ID, //
+					Tables.ARTICLE + "." + ArticleColumns.ID, //
+					Tables.ARTICLE + "." + ArticleColumns.TITLE, //
+					Tables.ARTICLE + "." + ArticleColumns.IMAGE_URL, //
+					Tables.ARTICLE + "." + ArticleColumns.HEADER, //
+					Tables.ARTICLE + "." + ArticleColumns.CONTENT, //
+					Tables.ARTICLE + "." + ArticleColumns.AUTHOR, //
+					Tables.ARTICLE + "." + ArticleColumns.FEED_ID, //
+					Tables.ARTICLE + "." + ArticleColumns.TIMESTAMP //
 			};
 		}
 
@@ -90,13 +90,13 @@ public class YANAContract {
 			public static int TIMESTAMP = 6;
 
 			public static String[] COLS = new String[] { //
-				StandardColumns._ID, //
-				Tables.ARTICLE + "." + ArticleColumns.ID, //
-				Tables.ARTICLE + "." + ArticleColumns.TITLE, //
-				Tables.ARTICLE + "." + ArticleColumns.IMAGE_URL, //
-				Tables.ARTICLE + "." + ArticleColumns.HEADER, //
-				Tables.ARTICLE + "." + ArticleColumns.FEED_ID, //
-				Tables.ARTICLE + "." + ArticleColumns.TIMESTAMP //
+					StandardColumns._ID, //
+					Tables.ARTICLE + "." + ArticleColumns.ID, //
+					Tables.ARTICLE + "." + ArticleColumns.TITLE, //
+					Tables.ARTICLE + "." + ArticleColumns.IMAGE_URL, //
+					Tables.ARTICLE + "." + ArticleColumns.HEADER, //
+					Tables.ARTICLE + "." + ArticleColumns.FEED_ID, //
+					Tables.ARTICLE + "." + ArticleColumns.TIMESTAMP //
 			};
 		}
 
@@ -107,7 +107,7 @@ public class YANAContract {
 
 		/** Build URI for all article with type */
 		public static Uri buildUriWithType(int type) {
-			return CONTENT_URI.buildUpon().appendPath(PATH_ARTICLE).appendPath(PATH_TYPE).appendPath(String.valueOf(type)).build();
+			return CONTENT_URI.buildUpon().appendPath(PATH_ARTICLE).appendPath(PATH_FEED).appendPath(String.valueOf(type)).build();
 		}
 
 		/** Build URI for one article */
@@ -131,5 +131,46 @@ public class YANAContract {
 		static final String ID = "id";
 		/** Name (TEXT) */
 		static final String NAME = "name";
+	}
+
+	/**
+	 * Feeds
+	 */
+	public static class FeedTable implements StandardColumns, FeedColumns {
+
+		public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_FEED).build();
+
+		public static final String CONTENT_TYPE = "vnd.android.cursor.dir/" + VENDOR_NAME + "." + PATH_FEED;
+		public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/" + VENDOR_NAME + "." + PATH_FEED;
+
+		/** Default "ORDER BY" clause. */
+		public static final String DEFAULT_SORT = Tables.ARTICLE + "." + FeedColumns.ID + " ASC";
+
+		public static class PROJ {
+			public static int _ID = 0;
+			public static int ID = 1;
+			public static int NAME = 2;
+
+			public static String[] COLS = new String[] { //
+					StandardColumns._ID, //
+					Tables.ARTICLE + "." + FeedColumns.ID, //
+					Tables.ARTICLE + "." + FeedColumns.NAME, //
+			};
+		}
+
+		/** Build URI for all feed */
+		public static Uri buildUri() {
+			return CONTENT_URI.buildUpon().appendPath(PATH_FEED).build();
+		}
+
+		/** Build URI for one feed */
+		public static Uri buildUriWithId(int id) {
+			return CONTENT_URI.buildUpon().appendPath(PATH_FEED).appendPath(String.valueOf(id)).build();
+		}
+
+		public static String getId(Uri uri) {
+			return uri.getPathSegments().get(2);
+		}
+
 	}
 }

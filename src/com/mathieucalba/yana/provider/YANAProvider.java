@@ -26,6 +26,9 @@ public class YANAProvider extends ContentProvider {
 	private static final int ARTICLE_BY_FEED_ID = 101;
 	private static final int ARTICLE_ID = 102;
 
+	private static final int FEED = 200;
+	private static final int FEED_ID = 201;
+
 	protected static YANADatabase mDatabase;
 
 	protected static UriMatcher buildUriMatcher(final String authority) {
@@ -35,10 +38,14 @@ public class YANAProvider extends ContentProvider {
 			Log.d(TAG, "authority=[" + authority + "]");
 		}
 
-		/* STORE */
+		/* ARTICLES */
 		matcher.addURI(authority, YANAContract.PATH_ARTICLE, ARTICLE);
-		matcher.addURI(authority, YANAContract.PATH_ARTICLE + SEPARATOR + YANAContract.PATH_TYPE + MANY, ARTICLE_BY_FEED_ID);
+		matcher.addURI(authority, YANAContract.PATH_ARTICLE + SEPARATOR + YANAContract.PATH_FEED + MANY, ARTICLE_BY_FEED_ID);
 		matcher.addURI(authority, YANAContract.PATH_ARTICLE + MANY, ARTICLE_ID);
+
+		/* FEEDS */
+		matcher.addURI(authority, YANAContract.PATH_FEED, FEED);
+		matcher.addURI(authority, YANAContract.PATH_FEED + MANY, FEED_ID);
 
 		return matcher;
 	}
@@ -64,6 +71,11 @@ public class YANAProvider extends ContentProvider {
 				return YANAContract.ArticleTable.CONTENT_TYPE;
 			case ARTICLE_ID:
 				return YANAContract.ArticleTable.CONTENT_ITEM_TYPE;
+
+			case FEED:
+				return YANAContract.FeedTable.CONTENT_TYPE;
+			case FEED_ID:
+				return YANAContract.FeedTable.CONTENT_ITEM_TYPE;
 		}
 
 		return null;
@@ -123,6 +135,29 @@ public class YANAProvider extends ContentProvider {
 				return c;
 			}
 
+			case FEED: {
+				final Cursor c = db.query(YANAContract.Tables.FEED, projection, selection, selectionArgs, null, null, sortOrder);
+				c.setNotificationUri(getContext().getContentResolver(), uri);
+				return c;
+			}
+
+			case FEED_ID: {
+				final StringBuilder select = new StringBuilder();
+				if (!TextUtils.isEmpty(selection)) {
+					select.append(selection);
+					select.append(" AND ");
+				}
+				select.append(YANAContract.Tables.FEED);
+				select.append('.');
+				select.append(YANAContract.FeedTable.ID);
+				select.append(" = ");
+				select.append(YANAContract.FeedTable.getId(uri));
+				selection = select.toString();
+				final Cursor c = db.query(YANAContract.Tables.FEED, projection, selection, selectionArgs, null, null, sortOrder);
+				c.setNotificationUri(getContext().getContentResolver(), uri);
+				return c;
+			}
+
 			default:
 				if (BuildConfig.DEBUG) {
 					Log.w(TAG, "match (" + match + ") is not handled in query");
@@ -151,6 +186,13 @@ public class YANAProvider extends ContentProvider {
 				db.insertOrThrow(YANAContract.Tables.ARTICLE, null, values);
 				getContext().getContentResolver().notifyChange(uri, null);
 				return YANAContract.ArticleTable.buildUriWithId(values.getAsInteger(YANAContract.ArticleColumns.ID));
+			}
+
+			case FEED:
+			case FEED_ID: {
+				db.insertOrThrow(YANAContract.Tables.FEED, null, values);
+				getContext().getContentResolver().notifyChange(uri, null);
+				return YANAContract.FeedTable.buildUriWithId(values.getAsInteger(YANAContract.FeedColumns.ID));
 			}
 
 			default:
@@ -194,6 +236,28 @@ public class YANAProvider extends ContentProvider {
 				select.append(YANAContract.ArticleTable.getId(uri));
 				selection = select.toString();
 				final int retVal = db.update(YANAContract.Tables.ARTICLE, values, selection, selectionArgs);
+				getContext().getContentResolver().notifyChange(uri, null);
+				return retVal;
+			}
+
+			case FEED: {
+				final int retVal = db.update(YANAContract.Tables.FEED, values, selection, selectionArgs);
+				getContext().getContentResolver().notifyChange(uri, null);
+				return retVal;
+			}
+			case FEED_ID: {
+				final StringBuilder select = new StringBuilder();
+				if (!TextUtils.isEmpty(selection)) {
+					select.append(selection);
+					select.append(" AND ");
+				}
+				select.append(YANAContract.Tables.FEED);
+				select.append('.');
+				select.append(YANAContract.FeedTable.ID);
+				select.append(" = ");
+				select.append(YANAContract.FeedTable.getId(uri));
+				selection = select.toString();
+				final int retVal = db.update(YANAContract.Tables.FEED, values, selection, selectionArgs);
 				getContext().getContentResolver().notifyChange(uri, null);
 				return retVal;
 			}
@@ -256,6 +320,29 @@ public class YANAProvider extends ContentProvider {
 				select.append(YANAContract.ArticleTable.getId(uri));
 				selection = select.toString();
 				final int retVal = db.delete(YANAContract.Tables.ARTICLE, selection, selectionArgs);
+				getContext().getContentResolver().notifyChange(uri, null);
+				return retVal;
+			}
+
+			case FEED: {
+				final int retVal = db.delete(YANAContract.Tables.FEED, selection, selectionArgs);
+				getContext().getContentResolver().notifyChange(uri, null);
+				return retVal;
+			}
+
+			case FEED_ID: {
+				final StringBuilder select = new StringBuilder();
+				if (!TextUtils.isEmpty(selection)) {
+					select.append(selection);
+					select.append(" AND ");
+				}
+				select.append(YANAContract.Tables.FEED);
+				select.append('.');
+				select.append(YANAContract.FeedTable.ID);
+				select.append(" = ");
+				select.append(YANAContract.FeedTable.getId(uri));
+				selection = select.toString();
+				final int retVal = db.delete(YANAContract.Tables.FEED, selection, selectionArgs);
 				getContext().getContentResolver().notifyChange(uri, null);
 				return retVal;
 			}
