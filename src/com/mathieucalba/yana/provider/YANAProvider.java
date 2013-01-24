@@ -23,11 +23,8 @@ public class YANAProvider extends ContentProvider {
 	private static final String MANY = "/*";
 
 	private static final int ARTICLE = 100;
-	private static final int ARTICLE_NEWS = 101;
-	private static final int ARTICLE_BRIEF = 102;
-	private static final int ARTICLE_TEST = 103;
-	private static final int ARTICLE_REPORT = 104;
-	private static final int ARTICLE_ID = 105;
+	private static final int ARTICLE_BY_FEED_ID = 101;
+	private static final int ARTICLE_ID = 102;
 
 	protected static YANADatabase mDatabase;
 
@@ -40,14 +37,7 @@ public class YANAProvider extends ContentProvider {
 
 		/* STORE */
 		matcher.addURI(authority, YANAContract.PATH_ARTICLE, ARTICLE);
-		matcher.addURI(authority, YANAContract.PATH_ARTICLE + SEPARATOR + YANAContract.PATH_TYPE + SEPARATOR + YANAContract.ArticleTable.ARTICLE_TYPE.NEWS,
-				ARTICLE_NEWS);
-		matcher.addURI(authority, YANAContract.PATH_ARTICLE + SEPARATOR + YANAContract.PATH_TYPE + SEPARATOR + YANAContract.ArticleTable.ARTICLE_TYPE.BRIEF,
-				ARTICLE_BRIEF);
-		matcher.addURI(authority, YANAContract.PATH_ARTICLE + SEPARATOR + YANAContract.PATH_TYPE + SEPARATOR + YANAContract.ArticleTable.ARTICLE_TYPE.TEST,
-				ARTICLE_TEST);
-		matcher.addURI(authority, YANAContract.PATH_ARTICLE + SEPARATOR + YANAContract.PATH_TYPE + SEPARATOR + YANAContract.ArticleTable.ARTICLE_TYPE.REPORT,
-				ARTICLE_REPORT);
+		matcher.addURI(authority, YANAContract.PATH_ARTICLE + SEPARATOR + YANAContract.PATH_TYPE + MANY, ARTICLE_BY_FEED_ID);
 		matcher.addURI(authority, YANAContract.PATH_ARTICLE + MANY, ARTICLE_ID);
 
 		return matcher;
@@ -70,10 +60,7 @@ public class YANAProvider extends ContentProvider {
 		final int match = mUriMatcher.match(uri);
 		switch (match) {
 			case ARTICLE:
-			case ARTICLE_NEWS:
-			case ARTICLE_BRIEF:
-			case ARTICLE_TEST:
-			case ARTICLE_REPORT:
+			case ARTICLE_BY_FEED_ID:
 				return YANAContract.ArticleTable.CONTENT_TYPE;
 			case ARTICLE_ID:
 				return YANAContract.ArticleTable.CONTENT_ITEM_TYPE;
@@ -102,10 +89,7 @@ public class YANAProvider extends ContentProvider {
 				return c;
 			}
 
-			case ARTICLE_NEWS:
-			case ARTICLE_BRIEF:
-			case ARTICLE_TEST:
-			case ARTICLE_REPORT: {
+			case ARTICLE_BY_FEED_ID: {
 				final StringBuilder select = new StringBuilder();
 				if (!TextUtils.isEmpty(selection)) {
 					select.append(selection);
@@ -113,7 +97,7 @@ public class YANAProvider extends ContentProvider {
 				}
 				select.append(YANAContract.Tables.ARTICLE);
 				select.append('.');
-				select.append(YANAContract.ArticleTable.TYPE);
+				select.append(YANAContract.ArticleTable.FEED_ID);
 				select.append(" = ");
 				select.append(YANAContract.ArticleTable.getType(uri));
 				selection = select.toString();
@@ -162,10 +146,7 @@ public class YANAProvider extends ContentProvider {
 		switch (match) {
 
 			case ARTICLE:
-			case ARTICLE_NEWS:
-			case ARTICLE_BRIEF:
-			case ARTICLE_TEST:
-			case ARTICLE_REPORT:
+			case ARTICLE_BY_FEED_ID:
 			case ARTICLE_ID: {
 				db.insertOrThrow(YANAContract.Tables.ARTICLE, null, values);
 				getContext().getContentResolver().notifyChange(uri, null);
@@ -195,10 +176,7 @@ public class YANAProvider extends ContentProvider {
 		switch (match) {
 
 			case ARTICLE:
-			case ARTICLE_NEWS:
-			case ARTICLE_BRIEF:
-			case ARTICLE_TEST:
-			case ARTICLE_REPORT: {
+			case ARTICLE_BY_FEED_ID: {
 				final int retVal = db.update(YANAContract.Tables.ARTICLE, values, selection, selectionArgs);
 				getContext().getContentResolver().notifyChange(uri, null);
 				return retVal;
@@ -248,10 +226,7 @@ public class YANAProvider extends ContentProvider {
 				return retVal;
 			}
 
-			case ARTICLE_NEWS:
-			case ARTICLE_BRIEF:
-			case ARTICLE_TEST:
-			case ARTICLE_REPORT: {
+			case ARTICLE_BY_FEED_ID: {
 				final StringBuilder select = new StringBuilder();
 				if (!TextUtils.isEmpty(selection)) {
 					select.append(selection);
@@ -259,7 +234,7 @@ public class YANAProvider extends ContentProvider {
 				}
 				select.append(YANAContract.Tables.ARTICLE);
 				select.append('.');
-				select.append(YANAContract.ArticleTable.TYPE);
+				select.append(YANAContract.ArticleTable.FEED_ID);
 				select.append(" = ");
 				select.append(YANAContract.ArticleTable.getType(uri));
 				selection = select.toString();

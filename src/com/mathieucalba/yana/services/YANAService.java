@@ -16,6 +16,7 @@ import android.util.Log;
 
 import com.mathieucalba.yana.BuildConfig;
 import com.mathieucalba.yana.R;
+import com.mathieucalba.yana.model.FeedsData;
 import com.mathieucalba.yana.provider.YANAContract;
 
 
@@ -76,7 +77,7 @@ public class YANAService extends IntentService {
 					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
 					getString(R.string.html_content), //
 					"YANA", //
-					YANAContract.ArticleTable.ARTICLE_TYPE.NEWS, //
+					FeedsData.FEED_IDS.NEWS, //
 					1358898479));
 
 			batch.add(createArticleInsertOpe(
@@ -87,7 +88,7 @@ public class YANAService extends IntentService {
 					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
 					getString(R.string.html_content), //
 					"YANA", //
-					YANAContract.ArticleTable.ARTICLE_TYPE.NEWS, //
+					FeedsData.FEED_IDS.NEWS, //
 					1358897479));
 
 			batch.add(createArticleInsertOpe(
@@ -98,7 +99,7 @@ public class YANAService extends IntentService {
 					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
 					getString(R.string.html_content), //
 					"YANA", //
-					YANAContract.ArticleTable.ARTICLE_TYPE.NEWS, //
+					FeedsData.FEED_IDS.NEWS, //
 					1358896479));
 
 			batch.add(createArticleInsertOpe(
@@ -109,7 +110,7 @@ public class YANAService extends IntentService {
 					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
 					getString(R.string.html_content), //
 					"YANA", //
-					YANAContract.ArticleTable.ARTICLE_TYPE.NEWS, //
+					FeedsData.FEED_IDS.NEWS, //
 					1358895479));
 
 			batch.add(createArticleInsertOpe(
@@ -120,7 +121,7 @@ public class YANAService extends IntentService {
 					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
 					getString(R.string.html_content), //
 					"YANA", //
-					YANAContract.ArticleTable.ARTICLE_TYPE.NEWS, //
+					FeedsData.FEED_IDS.NEWS, //
 					1358894479));
 
 			batch.add(createArticleInsertOpe(
@@ -131,7 +132,7 @@ public class YANAService extends IntentService {
 					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
 					getString(R.string.html_content), //
 					"YANA", //
-					YANAContract.ArticleTable.ARTICLE_TYPE.NEWS, //
+					FeedsData.FEED_IDS.NEWS, //
 					1358893479));
 
 			batch.add(createArticleInsertOpe(
@@ -142,7 +143,7 @@ public class YANAService extends IntentService {
 					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
 					getString(R.string.html_content), //
 					"YANA", //
-					YANAContract.ArticleTable.ARTICLE_TYPE.NEWS, //
+					FeedsData.FEED_IDS.NEWS, //
 					1358892479));
 
 			batch.add(createArticleInsertOpe(
@@ -153,7 +154,7 @@ public class YANAService extends IntentService {
 					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
 					getString(R.string.html_content), //
 					"YANA", //
-					YANAContract.ArticleTable.ARTICLE_TYPE.NEWS, //
+					FeedsData.FEED_IDS.NEWS, //
 					1358891479));
 
 			batch.add(createArticleInsertOpe(
@@ -164,7 +165,7 @@ public class YANAService extends IntentService {
 					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
 					getString(R.string.html_content), //
 					"YANA", //
-					YANAContract.ArticleTable.ARTICLE_TYPE.NEWS, //
+					FeedsData.FEED_IDS.NEWS, //
 					1358890479));
 
 			batch.add(createArticleInsertOpe(
@@ -175,7 +176,7 @@ public class YANAService extends IntentService {
 					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
 					getString(R.string.html_content), //
 					"YANA", //
-					YANAContract.ArticleTable.ARTICLE_TYPE.NEWS, //
+					FeedsData.FEED_IDS.NEWS, //
 					1358889479));
 
 			batch.add(createArticleInsertOpe(
@@ -186,7 +187,7 @@ public class YANAService extends IntentService {
 					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
 					getString(R.string.html_content), //
 					"YANA", //
-					YANAContract.ArticleTable.ARTICLE_TYPE.NEWS, //
+					FeedsData.FEED_IDS.NEWS, //
 					1358888479));
 
 			batch.add(createArticleInsertOpe(
@@ -197,7 +198,7 @@ public class YANAService extends IntentService {
 					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
 					getString(R.string.html_content), //
 					"YANA", //
-					YANAContract.ArticleTable.ARTICLE_TYPE.NEWS, //
+					FeedsData.FEED_IDS.NEWS, //
 					1358887479));
 
 			batch.add(createArticleInsertOpe(
@@ -208,7 +209,7 @@ public class YANAService extends IntentService {
 					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
 					getString(R.string.html_content), //
 					"YANA", //
-					YANAContract.ArticleTable.ARTICLE_TYPE.NEWS, //
+					FeedsData.FEED_IDS.NEWS, //
 					1358886479));
 
 			final ContentResolver cr = getContentResolver();
@@ -243,7 +244,7 @@ public class YANAService extends IntentService {
 		builder.withValue(YANAContract.ArticleTable.HEADER, header);
 		builder.withValue(YANAContract.ArticleTable.CONTENT, content);
 		builder.withValue(YANAContract.ArticleTable.AUTHOR, author);
-		builder.withValue(YANAContract.ArticleTable.TYPE, type);
+		builder.withValue(YANAContract.ArticleTable.FEED_ID, type);
 		builder.withValue(YANAContract.ArticleTable.TIMESTAMP, timestamp);
 		return builder.build();
 	}

@@ -13,7 +13,9 @@ public class YANAContract {
 	protected static final String PATH_TYPE = "type";
 
 	public interface Tables {
-		static final String ARTICLE = "ARTICLE";
+		static final String ARTICLE = "article";
+		static final String FEED = "feed";
+		static final String CATEGORY = "category";
 	}
 
 	public interface StandardColumns {
@@ -36,7 +38,7 @@ public class YANAContract {
 		/** Author (TEXT) */
 		static final String AUTHOR = "author";
 		/** Type (INTEGER) */
-		static final String TYPE = "type";
+		static final String FEED_ID = "feed_id";
 		/** Timestamp (INTEGER) */
 		static final String TIMESTAMP = "timestamp";
 	}
@@ -54,13 +56,6 @@ public class YANAContract {
 		/** Default "ORDER BY" clause. */
 		public static final String DEFAULT_SORT = Tables.ARTICLE + "." + ArticleColumns.TIMESTAMP + " DESC";
 
-		public static final class ARTICLE_TYPE {
-			public static final int NEWS = 1;
-			public static final int BRIEF = 2;
-			public static final int TEST = 3;
-			public static final int REPORT = 4;
-		}
-
 		public static class PROJ_DETAIL {
 			public static int _ID = 0;
 			public static int ID = 1;
@@ -69,7 +64,7 @@ public class YANAContract {
 			public static int HEADER = 4;
 			public static int CONTENT = 5;
 			public static int AUTHOR = 6;
-			public static int TYPE = 7;
+			public static int FEED_ID = 7;
 			public static int TIMESTAMP = 8;
 
 			public static String[] COLS = new String[] { //
@@ -80,7 +75,7 @@ public class YANAContract {
 				Tables.ARTICLE + "." + ArticleColumns.HEADER, //
 				Tables.ARTICLE + "." + ArticleColumns.CONTENT, //
 				Tables.ARTICLE + "." + ArticleColumns.AUTHOR, //
-				Tables.ARTICLE + "." + ArticleColumns.TYPE, //
+				Tables.ARTICLE + "." + ArticleColumns.FEED_ID, //
 				Tables.ARTICLE + "." + ArticleColumns.TIMESTAMP //
 			};
 		}
@@ -91,7 +86,7 @@ public class YANAContract {
 			public static int TITLE = 2;
 			public static int IMAGE_URL = 3;
 			public static int HEADER = 4;
-			public static int TYPE = 5;
+			public static int FEED_ID = 5;
 			public static int TIMESTAMP = 6;
 
 			public static String[] COLS = new String[] { //
@@ -100,7 +95,7 @@ public class YANAContract {
 				Tables.ARTICLE + "." + ArticleColumns.TITLE, //
 				Tables.ARTICLE + "." + ArticleColumns.IMAGE_URL, //
 				Tables.ARTICLE + "." + ArticleColumns.HEADER, //
-				Tables.ARTICLE + "." + ArticleColumns.TYPE, //
+				Tables.ARTICLE + "." + ArticleColumns.FEED_ID, //
 				Tables.ARTICLE + "." + ArticleColumns.TIMESTAMP //
 			};
 		}
@@ -113,26 +108,6 @@ public class YANAContract {
 		/** Build URI for all article with type */
 		public static Uri buildUriWithType(int type) {
 			return CONTENT_URI.buildUpon().appendPath(PATH_ARTICLE).appendPath(PATH_TYPE).appendPath(String.valueOf(type)).build();
-		}
-
-		/** Build URI for all news */
-		public static Uri buildUriNews() {
-			return buildUriWithType(ARTICLE_TYPE.NEWS);
-		}
-
-		/** Build URI for all briefs */
-		public static Uri buildUriBriefs() {
-			return buildUriWithType(ARTICLE_TYPE.BRIEF);
-		}
-
-		/** Build URI for all tests */
-		public static Uri buildUriTests() {
-			return buildUriWithType(ARTICLE_TYPE.TEST);
-		}
-
-		/** Build URI for all reports */
-		public static Uri buildUriReports() {
-			return buildUriWithType(ARTICLE_TYPE.REPORT);
 		}
 
 		/** Build URI for one article */
@@ -150,4 +125,11 @@ public class YANAContract {
 
 	}
 
+	public interface FeedColumns {
+		/** Default Column _ID */
+		/** Primary key id (INTEGER) */
+		static final String ID = "id";
+		/** Name (TEXT) */
+		static final String NAME = "name";
+	}
 }
