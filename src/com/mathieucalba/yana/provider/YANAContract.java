@@ -109,28 +109,28 @@ public class YANAContract {
 
 		/** Build URI for all articles */
 		public static Uri buildUri() {
-			return CONTENT_URI.buildUpon().appendPath(PATH_ARTICLE).build();
+			return CONTENT_URI;
 		}
 
 		/** Build URI for all article with feed id */
 		public static Uri buildUriWithFeedId(int feedId) {
-			return CONTENT_URI.buildUpon().appendPath(PATH_ARTICLE).appendPath(PATH_FEED).appendPath(String.valueOf(feedId)).build();
+			return CONTENT_URI.buildUpon().appendPath(PATH_FEED).appendPath(String.valueOf(feedId)).build();
 		}
 
 		/** Build URI for all article with category id */
 		public static Uri buildUriWithCategoryId(int categoryId) {
-			return CONTENT_URI.buildUpon().appendPath(PATH_ARTICLE).appendPath(PATH_CATEGORY).appendPath(String.valueOf(categoryId)).build();
+			return CONTENT_URI.buildUpon().appendPath(PATH_CATEGORY).appendPath(String.valueOf(categoryId)).build();
 		}
 
 		/** Build URI for all article with feed id and category id */
 		public static Uri buildUriWithFeedIdAndCategoryId(int feedId, int categoryId) {
-			return CONTENT_URI.buildUpon().appendPath(PATH_ARTICLE).appendPath(PATH_FEED).appendPath(String.valueOf(feedId)).appendPath(PATH_CATEGORY)
+			return CONTENT_URI.buildUpon().appendPath(PATH_FEED).appendPath(String.valueOf(feedId)).appendPath(PATH_CATEGORY)
 					.appendPath(String.valueOf(categoryId)).build();
 		}
 
 		/** Build URI for one article */
 		public static Uri buildUriWithArticleId(int id) {
-			return CONTENT_URI.buildUpon().appendPath(PATH_ARTICLE).appendPath(String.valueOf(id)).build();
+			return CONTENT_URI.buildUpon().appendPath(String.valueOf(id)).build();
 		}
 
 		public static String getFeedId(Uri uri) {
@@ -170,7 +170,7 @@ public class YANAContract {
 		public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/" + VENDOR_NAME + "." + PATH_FEED;
 
 		/** Default "ORDER BY" clause. */
-		public static final String DEFAULT_SORT = Tables.ARTICLE + "." + FeedColumns.ID + " ASC";
+		public static final String DEFAULT_SORT = Tables.FEED + "." + FeedColumns.ID + " ASC";
 
 		public static class PROJ {
 			public static int _ID = 0;
@@ -179,19 +179,19 @@ public class YANAContract {
 
 			public static String[] COLS = new String[] { //
 				StandardColumns._ID, //
-				Tables.ARTICLE + "." + FeedColumns.ID, //
-				Tables.ARTICLE + "." + FeedColumns.NAME, //
+				Tables.FEED + "." + FeedColumns.ID, //
+				Tables.FEED + "." + FeedColumns.NAME, //
 			};
 		}
 
 		/** Build URI for all feed */
 		public static Uri buildUri() {
-			return CONTENT_URI.buildUpon().appendPath(PATH_FEED).build();
+			return CONTENT_URI;
 		}
 
 		/** Build URI for one feed */
 		public static Uri buildUriWithId(int id) {
-			return CONTENT_URI.buildUpon().appendPath(PATH_FEED).appendPath(String.valueOf(id)).build();
+			return CONTENT_URI.buildUpon().appendPath(String.valueOf(id)).build();
 		}
 
 		public static String getId(Uri uri) {
@@ -219,7 +219,7 @@ public class YANAContract {
 		public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/" + VENDOR_NAME + "." + PATH_CATEGORY;
 
 		/** Default "ORDER BY" clause. */
-		public static final String DEFAULT_SORT = Tables.ARTICLE + "." + FeedColumns.ID + " ASC";
+		public static final String DEFAULT_SORT = Tables.CATEGORY + "." + FeedColumns.ID + " ASC";
 
 		public static class PROJ {
 			public static int _ID = 0;
@@ -227,20 +227,20 @@ public class YANAContract {
 			public static int NAME = 2;
 
 			public static String[] COLS = new String[] { //
-			StandardColumns._ID, //
-					Tables.ARTICLE + "." + FeedColumns.ID, //
-					Tables.ARTICLE + "." + FeedColumns.NAME, //
+				StandardColumns._ID, //
+				Tables.CATEGORY + "." + CategoryColumns.ID, //
+				Tables.CATEGORY + "." + CategoryColumns.NAME, //
 			};
 		}
 
 		/** Build URI for all feed */
 		public static Uri buildUri() {
-			return CONTENT_URI.buildUpon().appendPath(PATH_CATEGORY).build();
+			return CONTENT_URI;
 		}
 
 		/** Build URI for one category */
 		public static Uri buildUriWithId(int id) {
-			return CONTENT_URI.buildUpon().appendPath(PATH_CATEGORY).appendPath(String.valueOf(id)).build();
+			return CONTENT_URI.buildUpon().appendPath(String.valueOf(id)).build();
 		}
 
 		public static String getId(Uri uri) {
