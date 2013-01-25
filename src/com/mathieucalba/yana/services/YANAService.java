@@ -295,6 +295,7 @@ public class YANAService extends IntentService {
 		builder.withValue(YANAContract.ArticleTable.CONTENT, content);
 		builder.withValue(YANAContract.ArticleTable.AUTHOR, author);
 		builder.withValue(YANAContract.ArticleTable.FEED_ID, feedId);
+		builder.withValue(YANAContract.ArticleTable.CATEGORY_ID, categoryId);
 		builder.withValue(YANAContract.ArticleTable.TIMESTAMP, timestamp);
 		return builder.build();
 	}
