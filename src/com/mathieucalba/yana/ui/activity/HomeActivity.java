@@ -59,21 +59,21 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 	}
 
 	private void initSpinnerCategories() {
-		mCategoriesMenuAdapter = new CategoriesMenuAdapter(this, null);
+		mCategoriesMenuAdapter = new CategoriesMenuAdapter(this);
 		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		getSupportActionBar().setListNavigationCallbacks(mCategoriesMenuAdapter, this);
 
 		loadCategories();
 	}
 
+	private void loadCategories() {
+		LoaderUtils.restartLoader(this, LOADER_ID_CATEGORIES, null, this);
+	}
+
 	@Override
 	public boolean onNavigationItemSelected(int itemPosition, long itemId) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	private void loadCategories() {
-		LoaderUtils.restartLoader(this, LOADER_ID_CATEGORIES, null, this);
 	}
 
 	@Override

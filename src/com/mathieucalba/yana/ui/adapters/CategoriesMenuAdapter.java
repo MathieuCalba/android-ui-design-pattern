@@ -17,8 +17,8 @@ public class CategoriesMenuAdapter extends CursorAdapter {
 	private final LayoutInflater mInflater;
 	private final Context mContext;
 
-	public CategoriesMenuAdapter(Context context, Cursor cursor) {
-		super(context, cursor, 0);
+	public CategoriesMenuAdapter(Context context) {
+		super(context, null, 0);
 
 		mContext = context;
 		mInflater = LayoutInflater.from(context);
