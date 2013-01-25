@@ -254,7 +254,7 @@ public class YANAProvider extends ContentProvider {
 			Log.d(TAG, "insert(uri=" + uri + ", val=" + values + ")");
 		}
 
-		final SQLiteDatabase db = mDatabase.getReadableDatabase();
+		final SQLiteDatabase db = mDatabase.getWritableDatabase();
 		if (db == null || !db.isOpen()) {
 			return null;
 		}
