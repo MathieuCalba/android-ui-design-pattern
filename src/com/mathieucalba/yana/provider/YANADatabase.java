@@ -42,6 +42,7 @@ public class YANADatabase extends SQLiteOpenHelper {
 		.append(YANAContract.ArticleColumns.CONTENT).append("' TEXT, '") //
 		.append(YANAContract.ArticleColumns.AUTHOR).append("' TEXT, '") //
 		.append(YANAContract.ArticleColumns.FEED_ID).append("' INTEGER NOT NULL DEFAULT 0, '") //
+		.append(YANAContract.ArticleColumns.CATEGORY_ID).append("' INTEGER NOT NULL DEFAULT 0, '") //
 		.append(YANAContract.ArticleColumns.TIMESTAMP).append("' TIMESTAMP NOT NULL );") //
 		.toString();
 
@@ -106,7 +107,7 @@ public class YANADatabase extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		if (oldVersion == 1) {
+		if (oldVersion == 0) {
 			final String articleTable = new StringBuilder() //
 			.append("DROP TABLE ").append(YANAContract.Tables.ARTICLE) //
 			.toString();
@@ -136,6 +137,8 @@ public class YANADatabase extends SQLiteOpenHelper {
 			if (BuildConfig.DEBUG) {
 				Log.d(TAG, categoryTable);
 			}
+
+			onCreate(db);
 		}
 	}
 
@@ -143,7 +146,7 @@ public class YANADatabase extends SQLiteOpenHelper {
 		return new StringBuilder() //
 		.append("INSERT INTO ").append(YANAContract.Tables.FEED) //
 		.append(" ( ").append(YANAContract.FeedColumns.ID).append(", ").append(YANAContract.FeedColumns.NAME).append(" )") //
-		.append(" VALUES ( ").append(feed.id).append(", ").append(feed.name).append(" )") //
+		.append(" VALUES ( ").append(feed.id).append(", '").append(feed.name).append("' )") //
 		.toString();
 	}
 
@@ -151,7 +154,7 @@ public class YANADatabase extends SQLiteOpenHelper {
 		return new StringBuilder() //
 		.append("INSERT INTO ").append(YANAContract.Tables.CATEGORY) //
 		.append(" ( ").append(YANAContract.CategoryColumns.ID).append(", ").append(YANAContract.CategoryColumns.NAME).append(" )") //
-		.append(" VALUES ( ").append(category.id).append(", ").append(category.name).append(" )") //
+		.append(" VALUES ( ").append(category.id).append(", '").append(category.name).append("' )") //
 		.toString();
 	}
 }
