@@ -71,6 +71,42 @@ public class YANAService extends IntentService {
 
 			batch.add(createArticleInsertOpe(
 					//
+					21, //
+					"consectetur adipisicing elit", //
+					"", //
+					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
+					getString(R.string.html_content), //
+					"YANA", //
+					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.MOBILE, //
+					1358897479));
+
+			batch.add(createArticleInsertOpe(
+					//
+					22, //
+					"sed do eiusmod tempor incididunt", //
+					"", //
+					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
+					getString(R.string.html_content), //
+					"YANA", //
+					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.MOBILE, //
+					1358896479));
+
+			batch.add(createArticleInsertOpe(
+					//
+					23, //
+					"ut labore et dolore magna aliqua", //
+					"", //
+					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", //
+					getString(R.string.html_content), //
+					"YANA", //
+					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.MOBILE, //
+					1358895479));
+
+			batch.add(createArticleInsertOpe(
+					//
 					24, //
 					"Lorem ipsum dolor sit amet", //
 					"", //
@@ -78,6 +114,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.MOBILE, //
 					1358898479));
 
 			batch.add(createArticleInsertOpe(
@@ -89,6 +126,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.MICROSOFT, //
 					1358897479));
 
 			batch.add(createArticleInsertOpe(
@@ -100,6 +138,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.MAC, //
 					1358896479));
 
 			batch.add(createArticleInsertOpe(
@@ -111,6 +150,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.MAC, //
 					1358895479));
 
 			batch.add(createArticleInsertOpe(
@@ -122,6 +162,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.HARDWARE, //
 					1358894479));
 
 			batch.add(createArticleInsertOpe(
@@ -133,6 +174,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.GOOGLE, //
 					1358893479));
 
 			batch.add(createArticleInsertOpe(
@@ -144,6 +186,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.GOOGLE, //
 					1358892479));
 
 			batch.add(createArticleInsertOpe(
@@ -155,6 +198,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.GOOGLE, //
 					1358891479));
 
 			batch.add(createArticleInsertOpe(
@@ -166,6 +210,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.BUSINESS, //
 					1358890479));
 
 			batch.add(createArticleInsertOpe(
@@ -177,6 +222,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.BUSINESS, //
 					1358889479));
 
 			batch.add(createArticleInsertOpe(
@@ -188,6 +234,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.APPLE, //
 					1358888479));
 
 			batch.add(createArticleInsertOpe(
@@ -199,6 +246,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.APPLE, //
 					1358887479));
 
 			batch.add(createArticleInsertOpe(
@@ -210,6 +258,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
+					FeedsData.CATEGORY_IDS.APPLE, //
 					1358886479));
 
 			final ContentResolver cr = getContentResolver();
@@ -235,7 +284,8 @@ public class YANAService extends IntentService {
 		}
 	}
 
-	private ContentProviderOperation createArticleInsertOpe(int id, String title, String imageUrl, String header, String content, String author, int type,
+	private ContentProviderOperation createArticleInsertOpe(int id, String title, String imageUrl, String header, String content, String author, int feedId,
+			int categoryId,
 			long timestamp) {
 		final ContentProviderOperation.Builder builder = ContentProviderOperation.newInsert(YANAContract.ArticleTable.CONTENT_URI);
 		builder.withValue(YANAContract.ArticleTable.ID, id);
@@ -244,7 +294,7 @@ public class YANAService extends IntentService {
 		builder.withValue(YANAContract.ArticleTable.HEADER, header);
 		builder.withValue(YANAContract.ArticleTable.CONTENT, content);
 		builder.withValue(YANAContract.ArticleTable.AUTHOR, author);
-		builder.withValue(YANAContract.ArticleTable.FEED_ID, type);
+		builder.withValue(YANAContract.ArticleTable.FEED_ID, feedId);
 		builder.withValue(YANAContract.ArticleTable.TIMESTAMP, timestamp);
 		return builder.build();
 	}

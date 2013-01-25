@@ -1,5 +1,8 @@
 package com.mathieucalba.yana.provider;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -9,9 +12,6 @@ import android.util.Log;
 
 import com.mathieucalba.yana.BuildConfig;
 import com.mathieucalba.yana.model.FeedsData;
-import com.mathieucalba.yana.provider.YANAContract.ArticleColumns;
-import com.mathieucalba.yana.provider.YANAContract.FeedColumns;
-import com.mathieucalba.yana.provider.YANAContract.Tables;
 
 
 public class YANADatabase extends SQLiteOpenHelper {
@@ -33,17 +33,17 @@ public class YANADatabase extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		/* ARTICLE TABLE */
 		final String articleTable = new StringBuilder() //
-				.append("CREATE TABLE ").append(Tables.ARTICLE) //
-				.append(" ( '").append(BaseColumns._ID).append("' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '") //
-				.append(ArticleColumns.ID).append("' INTEGER NOT NULL, '") //
-				.append(ArticleColumns.TITLE).append("' TEXT, '") //
-				.append(ArticleColumns.IMAGE_URL).append("' TEXT, '") //
-				.append(ArticleColumns.HEADER).append("' TEXT, '") //
-				.append(ArticleColumns.CONTENT).append("' TEXT, '") //
-				.append(ArticleColumns.AUTHOR).append("' TEXT, '") //
-				.append(ArticleColumns.FEED_ID).append("' INTEGER NOT NULL DEFAULT 0, '") //
-				.append(ArticleColumns.TIMESTAMP).append("' TIMESTAMP NOT NULL );") //
-				.toString();
+		.append("CREATE TABLE ").append(YANAContract.Tables.ARTICLE) //
+		.append(" ( '").append(BaseColumns._ID).append("' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '") //
+		.append(YANAContract.ArticleColumns.ID).append("' INTEGER NOT NULL, '") //
+		.append(YANAContract.ArticleColumns.TITLE).append("' TEXT, '") //
+		.append(YANAContract.ArticleColumns.IMAGE_URL).append("' TEXT, '") //
+		.append(YANAContract.ArticleColumns.HEADER).append("' TEXT, '") //
+		.append(YANAContract.ArticleColumns.CONTENT).append("' TEXT, '") //
+		.append(YANAContract.ArticleColumns.AUTHOR).append("' TEXT, '") //
+		.append(YANAContract.ArticleColumns.FEED_ID).append("' INTEGER NOT NULL DEFAULT 0, '") //
+		.append(YANAContract.ArticleColumns.TIMESTAMP).append("' TIMESTAMP NOT NULL );") //
+		.toString();
 
 		db.execSQL(articleTable);
 
@@ -53,11 +53,11 @@ public class YANADatabase extends SQLiteOpenHelper {
 
 		/* FEED TABLE */
 		final String feedTable = new StringBuilder() //
-				.append("CREATE TABLE ").append(Tables.FEED) //
-				.append(" ( '").append(BaseColumns._ID).append("' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '") //
-				.append(ArticleColumns.ID).append("' INTEGER NOT NULL, '") //
-				.append(ArticleColumns.TITLE).append("' TEXT );") //
-				.toString();
+		.append("CREATE TABLE ").append(YANAContract.Tables.FEED) //
+		.append(" ( '").append(BaseColumns._ID).append("' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '") //
+		.append(YANAContract.FeedColumns.ID).append("' INTEGER NOT NULL, '") //
+		.append(YANAContract.FeedColumns.NAME).append("' TEXT );") //
+		.toString();
 
 		db.execSQL(feedTable);
 
@@ -65,52 +65,42 @@ public class YANADatabase extends SQLiteOpenHelper {
 			Log.d(TAG, feedTable);
 		}
 
-		String feedInsert = new StringBuilder() //
-				.append("INSERT INTO ").append(Tables.FEED) //
-				.append(" ( ").append(FeedColumns.ID).append(", ").append(FeedColumns.NAME).append(" )") //
-				.append(" VALUES ( ").append(FeedsData.FEED_IDS.NEWS).append(", ").append(FeedsData.FEED_NAMES.NEWS).append(" )") //
-				.toString();
+		final Set<FeedsData.Feed> feeds = FeedsData.getFeeds();
+		for (final Iterator<FeedsData.Feed> iterator = feeds.iterator(); iterator.hasNext();) {
+			final FeedsData.Feed feed = iterator.next();
+			final String feedInsert = createFeedInsert(feed);
 
-		db.execSQL(feedInsert);
+			db.execSQL(feedInsert);
 
-		if (BuildConfig.DEBUG) {
-			Log.d(TAG, feedInsert);
+			if (BuildConfig.DEBUG) {
+				Log.d(TAG, feedInsert);
+			}
 		}
 
-		feedInsert = new StringBuilder() //
-				.append("INSERT INTO ").append(Tables.FEED) //
-				.append(" ( ").append(FeedColumns.ID).append(", ").append(FeedColumns.NAME).append(" )") //
-				.append(" VALUES ( ").append(FeedsData.FEED_IDS.BRIEF).append(", ").append(FeedsData.FEED_NAMES.BRIEF).append(" )") //
-				.toString();
+		/* CATEGORY TABLE */
+		final String categoryTable = new StringBuilder() //
+		.append("CREATE TABLE ").append(YANAContract.Tables.CATEGORY) //
+		.append(" ( '").append(BaseColumns._ID).append("' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '") //
+		.append(YANAContract.CategoryColumns.ID).append("' INTEGER NOT NULL, '") //
+		.append(YANAContract.CategoryColumns.NAME).append("' TEXT );") //
+		.toString();
 
-		db.execSQL(feedInsert);
+		db.execSQL(categoryTable);
 
 		if (BuildConfig.DEBUG) {
-			Log.d(TAG, feedInsert);
+			Log.d(TAG, categoryTable);
 		}
 
-		feedInsert = new StringBuilder() //
-				.append("INSERT INTO ").append(Tables.FEED) //
-				.append(" ( ").append(FeedColumns.ID).append(", ").append(FeedColumns.NAME).append(" )") //
-				.append(" VALUES ( ").append(FeedsData.FEED_IDS.TEST).append(", ").append(FeedsData.FEED_NAMES.TEST).append(" )") //
-				.toString();
+		final Set<FeedsData.Category> categories = FeedsData.getCategories();
+		for (final Iterator<FeedsData.Category> iterator = categories.iterator(); iterator.hasNext();) {
+			final FeedsData.Category category = iterator.next();
+			final String categoryInsert = createCategoryInsert(category);
 
-		db.execSQL(feedInsert);
+			db.execSQL(categoryInsert);
 
-		if (BuildConfig.DEBUG) {
-			Log.d(TAG, feedInsert);
-		}
-
-		feedInsert = new StringBuilder() //
-				.append("INSERT INTO ").append(Tables.FEED) //
-				.append(" ( ").append(FeedColumns.ID).append(", ").append(FeedColumns.NAME).append(" )") //
-				.append(" VALUES ( ").append(FeedsData.FEED_IDS.REPORT).append(", ").append(FeedsData.FEED_NAMES.REPORT).append(" )") //
-				.toString();
-
-		db.execSQL(feedInsert);
-
-		if (BuildConfig.DEBUG) {
-			Log.d(TAG, feedInsert);
+			if (BuildConfig.DEBUG) {
+				Log.d(TAG, categoryInsert);
+			}
 		}
 	}
 
@@ -118,8 +108,8 @@ public class YANADatabase extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		if (oldVersion == 1) {
 			final String articleTable = new StringBuilder() //
-					.append("DROP TABLE ").append(Tables.ARTICLE) //
-					.toString();
+			.append("DROP TABLE ").append(YANAContract.Tables.ARTICLE) //
+			.toString();
 
 			db.execSQL(articleTable);
 
@@ -128,14 +118,40 @@ public class YANADatabase extends SQLiteOpenHelper {
 			}
 
 			final String feedTable = new StringBuilder() //
-					.append("DROP TABLE ").append(Tables.FEED) //
-					.toString();
+			.append("DROP TABLE ").append(YANAContract.Tables.FEED) //
+			.toString();
 
 			db.execSQL(feedTable);
 
 			if (BuildConfig.DEBUG) {
 				Log.d(TAG, feedTable);
 			}
+
+			final String categoryTable = new StringBuilder() //
+			.append("DROP TABLE ").append(YANAContract.Tables.CATEGORY) //
+			.toString();
+
+			db.execSQL(categoryTable);
+
+			if (BuildConfig.DEBUG) {
+				Log.d(TAG, categoryTable);
+			}
 		}
+	}
+
+	private String createFeedInsert(FeedsData.Feed feed) {
+		return new StringBuilder() //
+		.append("INSERT INTO ").append(YANAContract.Tables.FEED) //
+		.append(" ( ").append(YANAContract.FeedColumns.ID).append(", ").append(YANAContract.FeedColumns.NAME).append(" )") //
+		.append(" VALUES ( ").append(feed.id).append(", ").append(feed.name).append(" )") //
+		.toString();
+	}
+
+	private String createCategoryInsert(FeedsData.Category category) {
+		return new StringBuilder() //
+		.append("INSERT INTO ").append(YANAContract.Tables.CATEGORY) //
+		.append(" ( ").append(YANAContract.CategoryColumns.ID).append(", ").append(YANAContract.CategoryColumns.NAME).append(" )") //
+		.append(" VALUES ( ").append(category.id).append(", ").append(category.name).append(" )") //
+		.toString();
 	}
 }

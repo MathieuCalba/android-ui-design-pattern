@@ -4,10 +4,6 @@
     <string name="app_name">YANA</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="feed_news_name">News</string>
-    <string name="feed_briefs_name">Briefs</string>
-    <string name="feed_tests_name">Tests</string>
-    <string name="feed_reports_name">Reports</string>
     <string name="html_content">
 <![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><title>Lorem Ipsum - All the facts - Lipsum generator</title><meta name="keywords" content="Lorem Ipsum, Lipsum, Lorem, Ipsum, Text, Generate, Generator, Facts, Information, What, Why, Where, Dummy Text, Typesetting, Printing, de Finibus, Bonorum et Malorum, de Finibus Bonorum et Malorum, Extremes of Good and Evil, Cicero, Latin, Garbled, Scrambled, Lorem ipsum dolor sit amet, dolor, sit amet, consectetur, adipiscing, elit, sed, eiusmod, tempor, incididunt"><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><meta content="en" http-equiv="content-language"><link href="http://www.lipsum.com/favicon.ico" rel="shortcut icon"><style type="text/css">#lipsum {font-size:11px;text-align:justify}
