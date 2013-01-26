@@ -9,17 +9,25 @@ import com.mathieucalba.yana.ui.fragments.FeedListFragment;
 
 public class FeedKindsTabsAdapter extends FragmentStatePagerCursorAdapter {
 
+	private int mCategoryId = -1;
+
 	public FeedKindsTabsAdapter(FragmentManager fm) {
+		this(fm, -1);
+	}
+
+	public FeedKindsTabsAdapter(FragmentManager fm, int categoryId) {
 		super(null, fm, null);
+
+		mCategoryId = categoryId;
 	}
 
 	@Override
 	public Fragment getItem(int position) {
 		if (mCursor != null && position >= 0 && position < mCursor.getCount() && mCursor.moveToPosition(position)) {
 			final int feedId = mCursor.getInt(YANAContract.FeedTable.PROJ.ID);
-			return FeedListFragment.newInstance(feedId);
+			return FeedListFragment.newInstance(feedId, mCategoryId);
 		}
-		return FeedListFragment.newInstance(-1);
+		return FeedListFragment.newInstance(-1, -1);
 	}
 
 	@Override
@@ -29,6 +37,18 @@ public class FeedKindsTabsAdapter extends FragmentStatePagerCursorAdapter {
 			return feedName;
 		}
 		return "No Feed Name";
+	}
+
+	public void setCategoryId(int categoryId) {
+		mCategoryId = categoryId;
+		if (mFragments != null) {
+			for (int i = 0; i < mFragments.length; i++) {
+				final FeedListFragment f = (FeedListFragment) mFragments[i];
+				if (f != null) {
+					f.setCategoryId(categoryId);
+				}
+			}
+		}
 	}
 
 }

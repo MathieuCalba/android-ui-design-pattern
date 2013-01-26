@@ -33,6 +33,7 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 	private FeedKindsTabsAdapter mFeedKindsTabsAdapter;
 	private TabPageIndicator mTabPageIndicator;
 	private ViewPager mViewPager;
+	private int mCategoryId = -1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +82,18 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 
 	@Override
 	public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-		// TODO Auto-generated method stub
-		return false;
+		if (itemPosition == 0) {
+			mCategoryId = -1;
+		} else {
+			final Cursor c = (Cursor) mCategoriesMenuAdapter.getItem(itemPosition - 1);
+			if (c != null) {
+				mCategoryId = c.getInt(YANAContract.CategoryTable.PROJ.ID);
+			}
+		}
+
+		mFeedKindsTabsAdapter.setCategoryId(mCategoryId);
+
+		return true;
 	}
 
 	private void initTabsFeedKind() {

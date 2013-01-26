@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.util.SparseArray;
 import android.view.ViewGroup;
 
 
@@ -14,7 +13,7 @@ public abstract class FragmentStatePagerCursorAdapter extends FragmentStatePager
 	protected boolean mDataValid;
 	protected Cursor mCursor;
 	protected int mRowIDColumn;
-	protected SparseArray<Fragment> mFragments;
+	protected Fragment[] mFragments;
 	protected Bundle mBundle;
 	private static final String COLUMNS_UID = "id";
 
@@ -28,7 +27,9 @@ public abstract class FragmentStatePagerCursorAdapter extends FragmentStatePager
 		mCursor = c;
 		mDataValid = cursorPresent;
 		mRowIDColumn = cursorPresent ? c.getColumnIndexOrThrow(COLUMNS_UID) : -1;
-		mFragments = new SparseArray<Fragment>();
+		if (c != null) {
+			mFragments = new Fragment[c.getCount()];
+		}
 		mBundle = b;
 	}
 
@@ -56,14 +57,14 @@ public abstract class FragmentStatePagerCursorAdapter extends FragmentStatePager
 
 		final Fragment f = (Fragment) super.instantiateItem(container, position);
 
-		mFragments.put(position, f);
+		mFragments[position] = f;
 		return f;
 	}
 
 	@Override
 	public void destroyItem(ViewGroup container, int position, Object object) {
 		super.destroyItem(container, position, object);
-		mFragments.remove(position);
+		mFragments[position] = null;
 	}
 
 	public void changeCursor(Cursor cursor) {
@@ -89,6 +90,16 @@ public abstract class FragmentStatePagerCursorAdapter extends FragmentStatePager
 			notifyDataSetChanged();
 		}
 		return oldCursor;
+	}
+
+	@Override
+	public void notifyDataSetChanged() {
+		if (mDataValid && mCursor != null) {
+			mFragments = new Fragment[mCursor.getCount()];
+		} else {
+			mFragments = null;
+		}
+		super.notifyDataSetChanged();
 	}
 
 }
