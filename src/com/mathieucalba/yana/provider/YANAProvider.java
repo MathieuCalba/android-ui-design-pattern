@@ -20,13 +20,14 @@ public class YANAProvider extends ContentProvider {
 
 	protected static UriMatcher mUriMatcher;
 	private static final String SEPARATOR = "/";
-	private static final String MANY = "/*";
+	private static final String NUMBER = "/#";
+	private static final String TEXT = "/*";
 
 	private static final int ARTICLE = 100;
-	private static final int ARTICLE_ID = 101;
+	private static final int ARTICLE_ID = 104;
 	private static final int ARTICLE_BY_FEED_ID = 102;
 	private static final int ARTICLE_BY_CATEGORY_ID = 103;
-	private static final int ARTICLE_BY_FEED_ID_AND_CATEGORY_ID = 104;
+	private static final int ARTICLE_BY_FEED_ID_AND_CATEGORY_ID = 101;
 
 	private static final int FEED = 200;
 	private static final int FEED_ID = 201;
@@ -44,20 +45,20 @@ public class YANAProvider extends ContentProvider {
 		}
 
 		/* ARTICLES */
-		matcher.addURI(authority, YANAContract.PATH_ARTICLE, ARTICLE);
-		matcher.addURI(authority, YANAContract.PATH_ARTICLE + MANY, ARTICLE_ID);
-		matcher.addURI(authority, YANAContract.PATH_ARTICLE + SEPARATOR + YANAContract.PATH_FEED + MANY, ARTICLE_BY_FEED_ID);
-		matcher.addURI(authority, YANAContract.PATH_ARTICLE + SEPARATOR + YANAContract.PATH_CATEGORY + MANY, ARTICLE_BY_CATEGORY_ID);
-		matcher.addURI(authority, YANAContract.PATH_ARTICLE + SEPARATOR + YANAContract.PATH_FEED + MANY + YANAContract.PATH_CATEGORY + MANY,
+		matcher.addURI(authority, YANAContract.PATH_ARTICLE + SEPARATOR + YANAContract.PATH_FEED + NUMBER + SEPARATOR + YANAContract.PATH_CATEGORY + NUMBER,
 				ARTICLE_BY_FEED_ID_AND_CATEGORY_ID);
+		matcher.addURI(authority, YANAContract.PATH_ARTICLE + SEPARATOR + YANAContract.PATH_CATEGORY + NUMBER, ARTICLE_BY_CATEGORY_ID);
+		matcher.addURI(authority, YANAContract.PATH_ARTICLE + SEPARATOR + YANAContract.PATH_FEED + NUMBER, ARTICLE_BY_FEED_ID);
+		matcher.addURI(authority, YANAContract.PATH_ARTICLE + NUMBER, ARTICLE_ID);
+		matcher.addURI(authority, YANAContract.PATH_ARTICLE, ARTICLE);
 
 		/* FEEDS */
+		matcher.addURI(authority, YANAContract.PATH_FEED + NUMBER, FEED_ID);
 		matcher.addURI(authority, YANAContract.PATH_FEED, FEED);
-		matcher.addURI(authority, YANAContract.PATH_FEED + MANY, FEED_ID);
 
 		/* CATEGORIES */
+		matcher.addURI(authority, YANAContract.PATH_CATEGORY + NUMBER, CATEGORY_ID);
 		matcher.addURI(authority, YANAContract.PATH_CATEGORY, CATEGORY);
-		matcher.addURI(authority, YANAContract.PATH_CATEGORY + MANY, CATEGORY_ID);
 
 		return matcher;
 	}
