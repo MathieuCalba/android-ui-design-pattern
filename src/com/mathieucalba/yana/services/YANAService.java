@@ -138,7 +138,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
-					FeedsData.CATEGORY_IDS.MAC, //
+					FeedsData.CATEGORY_IDS.APPLE, //
 					1358896479));
 
 			batch.add(createArticleInsertOpe(
@@ -150,7 +150,7 @@ public class YANAService extends IntentService {
 					getString(R.string.html_content), //
 					"YANA", //
 					FeedsData.FEED_IDS.NEWS, //
-					FeedsData.CATEGORY_IDS.MAC, //
+					FeedsData.CATEGORY_IDS.BUSINESS, //
 					1358895479));
 
 			batch.add(createArticleInsertOpe(

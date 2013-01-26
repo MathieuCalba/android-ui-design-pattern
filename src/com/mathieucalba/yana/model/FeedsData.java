@@ -63,7 +63,6 @@ public class FeedsData {
 
 		categories.add(new Category(CATEGORY_IDS.MOBILE, "News"));
 		categories.add(new Category(CATEGORY_IDS.HARDWARE, "Hardware"));
-		categories.add(new Category(CATEGORY_IDS.MAC, "Mac"));
 		categories.add(new Category(CATEGORY_IDS.BUSINESS, "Business"));
 		categories.add(new Category(CATEGORY_IDS.GOOGLE, "Google"));
 		categories.add(new Category(CATEGORY_IDS.APPLE, "Apple"));
