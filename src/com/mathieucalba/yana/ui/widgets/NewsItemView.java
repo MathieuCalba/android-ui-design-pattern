@@ -1,5 +1,7 @@
 package com.mathieucalba.yana.ui.widgets;
 
+import java.util.Date;
+
 import android.content.Context;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
@@ -39,6 +41,9 @@ public class NewsItemView extends RelativeLayout implements IItemView {
 	}
 
 	private void init(Context context) {
+		final int padding = context.getResources().getDimensionPixelSize(R.dimen.margin_small);
+		setPadding(padding, padding, padding, padding);
+
 		final LayoutInflater inflater = LayoutInflater.from(context);
 		inflater.inflate(R.layout.item_feed_news, this, true);
 
@@ -54,7 +59,9 @@ public class NewsItemView extends RelativeLayout implements IItemView {
 	public void setData(Cursor c) {
 		long timestamp = c.getLong(YANAContract.ArticleTable.PROJ_LIST.TIMESTAMP);
 		timestamp = timestamp * 1000; // convert to milliseconds
-		mDate.setText(DateUtils.getRelativeDateTimeString(getContext(), timestamp, DateUtils.MINUTE_IN_MILLIS, DateUtils.DAY_IN_MILLIS, 0));
+		// mDate.setText(DateUtils.getRelativeDateTimeString(getContext(), timestamp, DateUtils.MINUTE_IN_MILLIS, DateUtils.DAY_IN_MILLIS, 0));
+		final Date now = new Date();
+		mDate.setText(DateUtils.getRelativeTimeSpanString(timestamp, now.getTime(), DateUtils.MINUTE_IN_MILLIS));
 
 		final CharArrayBuffer titleBuffer = mTitleBuffer;
 		c.copyStringToBuffer(YANAContract.ArticleTable.PROJ_LIST.TITLE, titleBuffer);
