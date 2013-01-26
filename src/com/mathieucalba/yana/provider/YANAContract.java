@@ -134,19 +134,19 @@ public class YANAContract {
 		}
 
 		public static String getFeedId(Uri uri) {
-			return uri.getPathSegments().get(3);
+			return uri.getPathSegments().get(2);
 		}
 
 		public static String getCategoryId(Uri uri) {
-			return uri.getPathSegments().get(3);
+			return uri.getPathSegments().get(2);
 		}
 
 		public static String getCategoryIdWithFeed(Uri uri) {
-			return uri.getPathSegments().get(5);
+			return uri.getPathSegments().get(4);
 		}
 
 		public static String getId(Uri uri) {
-			return uri.getPathSegments().get(2);
+			return uri.getPathSegments().get(1);
 		}
 
 	}
