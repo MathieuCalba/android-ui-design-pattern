@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import com.mathieucalba.yana.model.FeedsData;
 import com.mathieucalba.yana.provider.YANAContract;
+import com.mathieucalba.yana.ui.widgets.BigItemView;
+import com.mathieucalba.yana.ui.widgets.BriefItemView;
 import com.mathieucalba.yana.ui.widgets.IItemView;
 import com.mathieucalba.yana.ui.widgets.NewsItemView;
 
@@ -29,15 +31,15 @@ public class FeedListAdapter extends CursorAdapter {
 				break;
 
 			case FeedsData.FEED_IDS.BRIEF:
-				v = new NewsItemView(context);
+				v = new BriefItemView(context);
 				break;
 
 			case FeedsData.FEED_IDS.TEST:
-				v = new NewsItemView(context);
+				v = new BigItemView(context);
 				break;
 
 			case FeedsData.FEED_IDS.REPORT:
-				v = new NewsItemView(context);
+				v = new BigItemView(context);
 				break;
 
 			default:
