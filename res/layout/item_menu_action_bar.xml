@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:ellipsize="end"
     android:gravity="center_vertical"
+    android:minHeight="@dimen/min_height"
+    android:minWidth="@dimen/min_width_spinner_menu"
     android:paddingBottom="@dimen/margin_small"
     android:paddingLeft="@dimen/margin_normal"
     android:paddingRight="@dimen/margin_normal"
