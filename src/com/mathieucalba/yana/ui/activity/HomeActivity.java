@@ -19,6 +19,7 @@ import com.mathieucalba.yana.ui.adapters.CategoriesMenuAdapter;
 import com.mathieucalba.yana.ui.adapters.FeedKindsTabsAdapter;
 import com.mathieucalba.yana.utils.LoaderUtils;
 import com.mathieucalba.yana.utils.ServiceUtils;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.viewpagerindicator.TabPageIndicator;
 
 
@@ -35,6 +36,10 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 	private ViewPager mViewPager;
 	private int mCategoryId = -1;
 
+	protected ImageLoader mImageLoader = ImageLoader.getInstance();
+
+	private boolean mInstanceStateSaved = true;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,6 +52,19 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 		initSpinnerCategories();
 
 		initTabsFeedKind();
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		mInstanceStateSaved = true;
+	}
+
+	@Override
+	protected void onDestroy() {
+		if (!mInstanceStateSaved) {
+			mImageLoader.stop();
+		}
+		super.onDestroy();
 	}
 
 	@Override
