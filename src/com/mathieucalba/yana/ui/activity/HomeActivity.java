@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -15,8 +16,10 @@ import com.mathieucalba.yana.BuildConfig;
 import com.mathieucalba.yana.R;
 import com.mathieucalba.yana.provider.YANAContract;
 import com.mathieucalba.yana.ui.adapters.CategoriesMenuAdapter;
+import com.mathieucalba.yana.ui.adapters.FeedKindsTabsAdapter;
 import com.mathieucalba.yana.utils.LoaderUtils;
 import com.mathieucalba.yana.utils.ServiceUtils;
+import com.viewpagerindicator.TabPageIndicator;
 
 
 public class HomeActivity extends SherlockFragmentActivity implements LoaderCallbacks<Cursor>, OnNavigationListener {
@@ -24,8 +27,12 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 	private static final String TAG = HomeActivity.class.getSimpleName();
 
 	private static final int LOADER_ID_CATEGORIES = 1301250153;
+	private static final int LOADER_ID_FEED_KINDS = 1301260040;
 
 	private CategoriesMenuAdapter mCategoriesMenuAdapter;
+	private FeedKindsTabsAdapter mFeedKindsTabsAdapter;
+	private TabPageIndicator mTabPageIndicator;
+	private ViewPager mViewPager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,8 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 		initActionBar();
 
 		initSpinnerCategories();
+
+		initTabsFeedKind();
 	}
 
 	@Override
@@ -76,11 +85,32 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 		return false;
 	}
 
+	private void initTabsFeedKind() {
+		mTabPageIndicator = (TabPageIndicator) findViewById(R.id.indicator);
+		mViewPager = (ViewPager) findViewById(R.id.pager);
+
+		if (mViewPager != null) {
+			mFeedKindsTabsAdapter = new FeedKindsTabsAdapter(getSupportFragmentManager());
+			mViewPager.setAdapter(mFeedKindsTabsAdapter);
+			if (mTabPageIndicator != null) {
+				mTabPageIndicator.setViewPager(mViewPager);
+			}
+		}
+
+		loadFeedKinds();
+	}
+
+	private void loadFeedKinds() {
+		LoaderUtils.restartLoader(this, LOADER_ID_FEED_KINDS, null, this);
+	}
+
 	@Override
 	public Loader<Cursor> onCreateLoader(int idLoader, Bundle bundle) {
 		if (idLoader == LOADER_ID_CATEGORIES) {
 			return new CursorLoader(this, YANAContract.CategoryTable.buildUri(), YANAContract.CategoryTable.PROJ.COLS, null, null,
 					YANAContract.CategoryTable.DEFAULT_SORT);
+		} else if (idLoader == LOADER_ID_FEED_KINDS) {
+			return new CursorLoader(this, YANAContract.FeedTable.buildUri(), YANAContract.FeedTable.PROJ.COLS, null, null, YANAContract.FeedTable.DEFAULT_SORT);
 		} else {
 			if (BuildConfig.DEBUG) {
 				Log.e(TAG, "Error, id for cursor unknown-id=[" + idLoader + "]");
@@ -95,20 +125,16 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 		if (loader != null) {
 			id = loader.getId();
 		}
+
 		if (BuildConfig.DEBUG) {
-			Log.d(TAG, "onLoadFinished:" + id + "; cursor:" + cursor);
+			Log.d(TAG, "onLoadFinished:" + id + "; cursor:" + cursor + " with count:" + (cursor != null ? cursor.getCount() : 0));
 		}
 
 		if (id == LOADER_ID_CATEGORIES) {
-			if (cursor != null) {
-				if (BuildConfig.DEBUG) {
-					Log.d(TAG, "onLoadFinished: count=" + cursor.getCount());
-				}
-			}
-
 			mCategoriesMenuAdapter.swapCursor(cursor);
-
-			// getSupportActionBar().setSelectedNavigationItem(0);
+		} else if (id == LOADER_ID_FEED_KINDS) {
+			mFeedKindsTabsAdapter.swapCursor(cursor);
+			mTabPageIndicator.notifyDataSetChanged();
 		}
 	}
 
@@ -118,8 +144,12 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 		if (BuildConfig.DEBUG) {
 			Log.e(TAG, "onLoaderReset:" + id);
 		}
+
 		if (id == LOADER_ID_CATEGORIES) {
 			mCategoriesMenuAdapter.swapCursor(null);
+		} else if (id == LOADER_ID_FEED_KINDS) {
+			mFeedKindsTabsAdapter.swapCursor(null);
+			mTabPageIndicator.notifyDataSetChanged();
 		}
 	}
 
