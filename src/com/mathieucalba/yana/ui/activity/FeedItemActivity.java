@@ -150,6 +150,7 @@ public class FeedItemActivity extends SherlockFragmentActivity implements Loader
 
 			if (position > -1) {
 				mViewPager.setCurrentItem(position, true);
+				getSupportActionBar().setTitle(position + 1 + " / " + cursor.getCount());
 			}
 		}
 	}

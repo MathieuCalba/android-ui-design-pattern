@@ -8,19 +8,22 @@ import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.view.GestureDetector.OnGestureListener;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.mathieucalba.yana.R;
 import com.mathieucalba.yana.provider.YANAContract;
 import com.mathieucalba.yana.ui.activity.FeedItemActivity;
+import com.mathieucalba.yana.ui.widgets.GestureWebView;
 import com.mathieucalba.yana.utils.LoaderUtils;
 
 
-public class FeedItemFragment extends SherlockFragment implements LoaderCallbacks<Cursor> {
+public class FeedItemFragment extends SherlockFragment implements LoaderCallbacks<Cursor>, OnGestureListener {
 
 	private static final String BASE_URL = "http://www.google.com";
 	private static final String TEXT_HTML = "text/html";
@@ -29,7 +32,7 @@ public class FeedItemFragment extends SherlockFragment implements LoaderCallback
 
 	private static final int LOADER_ID_BASE_FEED_ITEM = 1301292000;
 
-	private WebView mWebView;
+	private GestureWebView mWebView;
 	private int mItemId;
 	private Cursor mCursor;
 
@@ -59,7 +62,8 @@ public class FeedItemFragment extends SherlockFragment implements LoaderCallback
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		final View v = inflater.inflate(R.layout.fragment_feed_item, container, false);
-		mWebView = (WebView) v.findViewById(R.id.webview);
+		mWebView = (GestureWebView) v.findViewById(R.id.webview);
+		mWebView.init(this);
 		mWebView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 		return v;
 	}
@@ -112,6 +116,56 @@ public class FeedItemFragment extends SherlockFragment implements LoaderCallback
 		final int realId = id - mItemId;
 		if (realId == LOADER_ID_BASE_FEED_ITEM) {
 			mCursor = null;
+		}
+	}
+
+	@Override
+	public boolean onDown(MotionEvent e) {
+		return false;
+	}
+
+	@Override
+	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+		return false;
+	}
+
+	@Override
+	public void onLongPress(MotionEvent e) {
+	}
+
+	@Override
+	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+		final float x1 = e1.getX();
+		final float y1 = e1.getY();
+		final float x2 = e2.getX();
+		final float y2 = e2.getY();
+
+		final float dx = x1 - x2;
+		final float dy = y1 - y2;
+		final int height = mWebView.getHeight();
+		if (Math.abs(dx) < Math.abs(dy) && Math.abs(dy) > (float) height / 4) {
+			showActionBar(dy < 0);
+		}
+		return false;
+	}
+
+	@Override
+	public void onShowPress(MotionEvent e) {
+	}
+
+	@Override
+	public boolean onSingleTapUp(MotionEvent e) {
+		return false;
+	}
+
+	private void showActionBar(boolean state) {
+		if (getSherlockActivity() != null && !isDetached()) {
+			final ActionBar ab = getSherlockActivity().getSupportActionBar();
+			if (state) {
+				ab.show();
+			} else {
+				ab.hide();
+			}
 		}
 	}
 
