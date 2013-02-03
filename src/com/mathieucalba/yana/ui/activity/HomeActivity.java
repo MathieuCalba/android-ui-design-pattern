@@ -151,7 +151,7 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 
 	private void initTabsFeedKind() {
 		mTabPageIndicator = (TabPageIndicator) findViewById(R.id.indicator);
-		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager = (ViewPager) findViewById(R.id.pager_list);
 
 		if (mViewPager != null) {
 			mFeedKindsTabsAdapter = new FeedKindsTabsAdapter(getSupportFragmentManager());

@@ -65,7 +65,7 @@ public class FeedItemActivity extends SherlockFragmentActivity implements Loader
 
 		initActionBar();
 
-		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager = (ViewPager) findViewById(R.id.pager_detail);
 		mFeedItemAdapter = new FeedItemAdapter(getSupportFragmentManager());
 		mViewPager.setOnPageChangeListener(this);
 		mViewPager.setAdapter(mFeedItemAdapter);
