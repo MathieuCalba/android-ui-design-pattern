@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.ViewAnimator;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.mathieucalba.yana.R;
@@ -31,16 +30,19 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 
 	private static final int LOADER_ID_BASE_FEED_LIST = 1301260000;
 
+	private static final String STATE_CHECKED_POSITION = "com.mathieucalba.yana.STATE_CHECKED_POSITION";
+
 	private static final String LIMIT_0_X = " LIMIT 0,";
 	private static final int DEFAULT_NB_ITEM = 20;
 
 	private int mFeedId = -1;
 	private int mCategoryId = -1;
 	private int mCurrentNbItem = 0;
+	private int mCheckedPosition = -1;
 	private FeedListAdapter mFeedListAdapter;
 
-	private ViewAnimator mViewAnimator;
 	private ListView mListView;
+	private View mEmptyView;
 
 	public static FeedListFragment newInstance(int feedId, int categoryId) {
 		final FeedListFragment f = new FeedListFragment();
@@ -74,11 +76,14 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		mViewAnimator = (ViewAnimator) inflater.inflate(R.layout.fragment_feed_list, container, false);
-		mViewAnimator.setDisplayedChild(0);
-		mListView = (ListView) mViewAnimator.findViewById(R.id.list_view);
+		final View v = inflater.inflate(R.layout.fragment_feed_list, container, false);
+
+		mListView = (ListView) v.findViewById(R.id.list_view);
 		mListView.setOnItemClickListener(this);
-		return mViewAnimator;
+
+		mEmptyView = v.findViewById(R.id.empty_view);
+
+		return v;
 	}
 
 	@Override
@@ -87,6 +92,10 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 
 		mFeedListAdapter = new FeedListAdapter(getActivity());
 		mListView.setAdapter(mFeedListAdapter);
+
+		if (savedInstanceState != null) {
+			mCheckedPosition = savedInstanceState.getInt(STATE_CHECKED_POSITION, -1);
+		}
 	}
 
 	@Override
@@ -94,6 +103,13 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 		super.onStart();
 
 		loadFeedContent();
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+
+		outState.putInt(STATE_CHECKED_POSITION, mCheckedPosition);
 	}
 
 	public void setCategoryId(int categoryId) {
@@ -148,13 +164,19 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 		final int id = loader.getId();
 		final int realId = id - mFeedId * 100 - mCategoryId;
 		if (realId == LOADER_ID_BASE_FEED_LIST) {
-			mFeedListAdapter.swapCursor(cursor);
-			if (cursor != null) {
-				mViewAnimator.setDisplayedChild(1);
+			if (cursor != null && cursor.moveToFirst()) {
+				mListView.setVisibility(View.VISIBLE);
+				mEmptyView.setVisibility(View.GONE);
 				mCurrentNbItem = cursor.getCount();
 			} else {
-				mViewAnimator.setDisplayedChild(2);
+				mListView.setVisibility(View.GONE);
+				mEmptyView.setVisibility(View.VISIBLE);
 				mCurrentNbItem = 0;
+			}
+			mFeedListAdapter.swapCursor(cursor);
+
+			if (mCheckedPosition >= 0) {
+				mListView.setItemChecked(mCheckedPosition, true);
 			}
 		}
 	}
@@ -165,13 +187,19 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 		final int realId = id - mFeedId * 100 - mCategoryId;
 		if (realId == LOADER_ID_BASE_FEED_LIST) {
 			mFeedListAdapter.swapCursor(null);
-			mViewAnimator.setDisplayedChild(2);
 			mCurrentNbItem = 0;
 		}
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		// final Cursor cursor = (Cursor) mFeedListAdapter.getItem(position);
+		// final int articleId = cursor.getInt(YANAContract.ArticleTable.PROJ_LIST.ID);
+		// final Uri articleUri = YANAContract.ArticleTable.buildUriWithArticleId(articleId);
+		// final Intent intent = new Intent(Intent.ACTION_VIEW, articleUri);
+		// intent.putExtra(FeedItemActivity.EXTRA_CATEGORY_ID, mCategoryId);
+		// intent.putExtra(FeedItemActivity.EXTRA_FEED_ID, mFeedId);
+
 		final Intent intent = new Intent(getActivity(), FeedItemActivity.class);
 		intent.putExtra(FeedItemActivity.EXTRA_CATEGORY_ID, mCategoryId);
 		intent.putExtra(FeedItemActivity.EXTRA_FEED_ID, mFeedId);
@@ -181,6 +209,9 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 			intent.putExtra(FeedItemActivity.EXTRA_ITEM_ID, idItem);
 		}
 		startActivity(intent);
+
+		mListView.setItemChecked(position, true);
+		mCheckedPosition = position;
 	}
 
 }

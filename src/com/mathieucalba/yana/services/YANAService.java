@@ -14,11 +14,13 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.mathieucalba.yana.BuildConfig;
 import com.mathieucalba.yana.model.FeedsData;
 import com.mathieucalba.yana.provider.YANAContract;
+import com.mathieucalba.yana.receivers.InitDataReceiver;
 
 
 public class YANAService extends IntentService {
@@ -30,8 +32,17 @@ public class YANAService extends IntentService {
 	private static final int DEFAULT_API_ID = -1;
 	public static final int API_INIT = 1301222226;
 
+	private LocalBroadcastManager mLocalBroadcastManager;
+
 	public YANAService() {
 		super(TAG);
+	}
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+
+		mLocalBroadcastManager = LocalBroadcastManager.getInstance(this);
 	}
 
 	@Override
@@ -64,6 +75,10 @@ public class YANAService extends IntentService {
 
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	private void initData() {
+		Intent i = new Intent(InitDataReceiver.ACTION_INIT_DATA_CHANGE_STATE);
+		i.putExtra(InitDataReceiver.EXTRA_STATE, true);
+		mLocalBroadcastManager.sendBroadcast(i);
+
 		final SharedPreferences pref = getSharedPreferences(PREF_DATA_NAME, MODE_PRIVATE);
 		final boolean isDataInit = pref.getBoolean(PREF_DATA_IS_INIT_KEY, false);
 
@@ -97,6 +112,10 @@ public class YANAService extends IntentService {
 				}
 			}
 		}
+
+		i = new Intent(InitDataReceiver.ACTION_INIT_DATA_CHANGE_STATE);
+		i.putExtra(InitDataReceiver.EXTRA_STATE, false);
+		mLocalBroadcastManager.sendBroadcast(i);
 	}
 
 	private ContentProviderOperation createArticleInsertOpe(FeedsData.Article article) {
