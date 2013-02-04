@@ -49,7 +49,10 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.activity_home);
 
 		initActionBar();
@@ -107,7 +110,6 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 	}
 
 	private void initActionBar() {
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setRefreshingState(false);
 
 		final ActionBar ab = getSupportActionBar();
