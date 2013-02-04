@@ -27,4 +27,13 @@ public class LoaderUtils {
 		}
 	}
 
+	public static void destroyLoader(Fragment fragment, int id) {
+		if (fragment.getActivity() != null && !fragment.isDetached()) {
+			final LoaderManager loaderManager = fragment.getActivity().getSupportLoaderManager();
+			if (loaderManager != null) {
+				loaderManager.destroyLoader(id);
+			}
+		}
+	}
+
 }

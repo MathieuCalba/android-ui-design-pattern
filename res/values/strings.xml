@@ -7,5 +7,6 @@
     <string name="categories_all">All</string>
     <string name="feed_list_empty">No article in this category</string>
     <string name="feed_item_image_content_description">Image Article Preview</string>
+    <string name="please_select_item">Please Select an Article</string>
 
 </resources>
