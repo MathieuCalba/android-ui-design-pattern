@@ -64,7 +64,7 @@ public class NewsItemView extends RelativeLayout implements IItemView {
 	public void setData(Cursor c) {
 		long timestamp = c.getLong(YANAContract.ArticleTable.PROJ_LIST.TIMESTAMP);
 		timestamp = timestamp * 1000; // convert to milliseconds
-		// mDate.setText(DateUtils.getRelativeDateTimeString(getContext(), timestamp, DateUtils.MINUTE_IN_MILLIS, DateUtils.DAY_IN_MILLIS, 0));
+
 		final Date now = new Date();
 		mDate.setText(DateUtils.getRelativeTimeSpanString(timestamp, now.getTime(), DateUtils.MINUTE_IN_MILLIS));
 
