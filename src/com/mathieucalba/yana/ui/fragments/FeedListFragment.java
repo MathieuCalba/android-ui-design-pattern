@@ -28,14 +28,10 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 
 	public static final String EXTRA_FEED_ID = "com.mathieucalba.yana.EXTRA_FEED_ID";
 	public static final String EXTRA_CATEGORY_ID = "com.mathieucalba.yana.EXTRA_CATEGORY_ID";
-	private static final String EXTRA_NB_ITEM_ID = "com.mathieucalba.yana.EXTRA_NB_ITEM_ID";
 
 	private static final int LOADER_ID_BASE_FEED_LIST = 1301260000;
 
 	private static final String STATE_CHECKED_POSITION = "com.mathieucalba.yana.STATE_CHECKED_POSITION";
-
-	private static final String LIMIT_0_X = " LIMIT 0,";
-	private static final int DEFAULT_NB_ITEM = 20;
 
 	private int mFeedId = -1;
 	private int mCategoryId = -1;
@@ -121,19 +117,10 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 	}
 
 	private void loadFeedContent() {
-		loadFeedContent(DEFAULT_NB_ITEM);
-	}
-
-	private void loadFeedContent(int nbItemToLoad) {
 		final Bundle b = new Bundle();
 		b.putInt(EXTRA_FEED_ID, mFeedId);
 		b.putInt(EXTRA_CATEGORY_ID, mCategoryId);
-		b.putInt(EXTRA_NB_ITEM_ID, nbItemToLoad);
 		LoaderUtils.restartLoader(this, LOADER_ID_BASE_FEED_LIST + mFeedId * 100 + mCategoryId, b, this);
-	}
-
-	private void loadFeedContentMoreItem() {
-		loadFeedContent(DEFAULT_NB_ITEM + mCurrentNbItem);
 	}
 
 	@Override
@@ -152,10 +139,7 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 						uri = YANAContract.ArticleTable.buildUriWithFeedIdAndCategoryId(feedId, categoryId);
 					}
 
-					// final int limit = b.getInt(EXTRA_NB_ITEM_ID, DEFAULT_NB_ITEM);
-
-					return new CursorLoader(getActivity(), uri, YANAContract.ArticleTable.PROJ_LIST.COLS, null, null,
-							YANAContract.ArticleTable.DEFAULT_SORT);// + LIMIT_0_X + limit
+					return new CursorLoader(getActivity(), uri, YANAContract.ArticleTable.PROJ_LIST.COLS, null, null, YANAContract.ArticleTable.DEFAULT_SORT);
 				}
 			}
 		}
@@ -196,13 +180,7 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		// final Cursor cursor = (Cursor) mFeedListAdapter.getItem(position);
-		// final int articleId = cursor.getInt(YANAContract.ArticleTable.PROJ_LIST.ID);
-		// final Uri articleUri = YANAContract.ArticleTable.buildUriWithArticleId(articleId);
-		// final Intent intent = new Intent(Intent.ACTION_VIEW, articleUri);
-		// intent.putExtra(FeedItemActivity.EXTRA_CATEGORY_ID, mCategoryId);
-		// intent.putExtra(FeedItemActivity.EXTRA_FEED_ID, mFeedId);
-
+		// Briefs don't have content details
 		if (mFeedId != FeedsData.FEED_IDS.BRIEF) {
 			final Intent intent = new Intent(getActivity(), FeedItemActivity.class);
 			intent.putExtra(FeedItemActivity.EXTRA_CATEGORY_ID, mCategoryId);
