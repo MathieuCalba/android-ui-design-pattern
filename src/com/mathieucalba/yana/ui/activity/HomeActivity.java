@@ -174,17 +174,22 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 
 	@Override
 	public Loader<Cursor> onCreateLoader(int idLoader, Bundle bundle) {
-		if (idLoader == LOADER_ID_CATEGORIES) {
-			return new CursorLoader(this, YANAContract.CategoryTable.buildUri(), YANAContract.CategoryTable.PROJ.COLS, null, null,
-					YANAContract.CategoryTable.DEFAULT_SORT);
-		} else if (idLoader == LOADER_ID_FEED_KINDS) {
-			return new CursorLoader(this, YANAContract.FeedTable.buildUri(), YANAContract.FeedTable.PROJ.COLS, null, null, YANAContract.FeedTable.DEFAULT_SORT);
-		} else {
-			if (BuildConfig.DEBUG) {
-				Log.e(TAG, "Error, id for cursor unknown-id=[" + idLoader + "]");
-			}
-			return null;
+		switch (idLoader) {
+			case LOADER_ID_CATEGORIES:
+				return new CursorLoader(this, YANAContract.CategoryTable.buildUri(), YANAContract.CategoryTable.PROJ.COLS, null, null,
+						YANAContract.CategoryTable.DEFAULT_SORT);
+
+			case LOADER_ID_FEED_KINDS:
+				return new CursorLoader(this, YANAContract.FeedTable.buildUri(), YANAContract.FeedTable.PROJ.COLS, null, null,
+						YANAContract.FeedTable.DEFAULT_SORT);
+
+			default:
+				if (BuildConfig.DEBUG) {
+					Log.e(TAG, "Error, id for cursor unknown-id=[" + idLoader + "]");
+				}
+				break;
 		}
+		return null;
 	}
 
 	@Override
@@ -198,11 +203,17 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 			Log.d(TAG, "onLoadFinished:" + id + "; cursor:" + cursor + " with count:" + (cursor != null ? cursor.getCount() : 0));
 		}
 
-		if (id == LOADER_ID_CATEGORIES) {
-			mCategoriesMenuAdapter.swapCursor(cursor);
-		} else if (id == LOADER_ID_FEED_KINDS) {
-			mFeedKindsTabsAdapter.swapCursor(cursor);
-			mTabPageIndicator.notifyDataSetChanged();
+		switch (id) {
+			case LOADER_ID_CATEGORIES:
+				mCategoriesMenuAdapter.swapCursor(cursor);
+				break;
+
+			case LOADER_ID_FEED_KINDS:
+				mFeedKindsTabsAdapter.swapCursor(cursor);
+				mTabPageIndicator.notifyDataSetChanged();
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -213,11 +224,17 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 			Log.e(TAG, "onLoaderReset:" + id);
 		}
 
-		if (id == LOADER_ID_CATEGORIES) {
-			mCategoriesMenuAdapter.swapCursor(null);
-		} else if (id == LOADER_ID_FEED_KINDS) {
-			mFeedKindsTabsAdapter.swapCursor(null);
-			mTabPageIndicator.notifyDataSetChanged();
+		switch (id) {
+			case LOADER_ID_CATEGORIES:
+				mCategoriesMenuAdapter.swapCursor(null);
+				break;
+
+			case LOADER_ID_FEED_KINDS:
+				mFeedKindsTabsAdapter.swapCursor(null);
+				mTabPageIndicator.notifyDataSetChanged();
+				break;
+			default:
+				break;
 		}
 	}
 
