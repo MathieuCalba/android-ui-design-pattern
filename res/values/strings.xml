@@ -3,7 +3,6 @@
 
     <string name="app_name">YANA</string>
     <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
     <string name="categories_all">All</string>
     <string name="feed_list_empty">No article in this category</string>
     <string name="feed_item_image_content_description">Image Article Preview</string>
