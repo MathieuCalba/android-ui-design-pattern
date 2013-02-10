@@ -20,7 +20,6 @@
         android:xlargeScreens="true" />
 
     <application
-        android:name="com.mathieucalba.yana.UIDesignPatternApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
