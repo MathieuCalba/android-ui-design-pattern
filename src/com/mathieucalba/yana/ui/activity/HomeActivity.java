@@ -15,7 +15,6 @@ import android.util.Log;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.Window;
 import com.mathieucalba.yana.BuildConfig;
 import com.mathieucalba.yana.R;
@@ -84,7 +83,6 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 		if (mInitDataReceiver == null) {
 			mInitDataReceiver = new InitDataReceiver(this);
 		}
-
 		mLocalBroadcastManager.registerReceiver(mInitDataReceiver, InitDataReceiver.getIntentFilter());
 	}
 
@@ -106,13 +104,6 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 			mImageLoader.stop();
 		}
 		super.onDestroy();
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		// getSupportMenuInflater().inflate(R.menu.activity_home, menu);
-		return true;
 	}
 
 	private void refreshData() {
