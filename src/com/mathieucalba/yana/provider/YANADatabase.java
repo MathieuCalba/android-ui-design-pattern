@@ -33,18 +33,18 @@ public class YANADatabase extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		/* ARTICLE TABLE */
 		final String articleTable = new StringBuilder() //
-		.append("CREATE TABLE ").append(YANAContract.Tables.ARTICLE) //
-		.append(" ( '").append(BaseColumns._ID).append("' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '") //
-		.append(YANAContract.ArticleColumns.ID).append("' INTEGER NOT NULL, '") //
-		.append(YANAContract.ArticleColumns.TITLE).append("' TEXT, '") //
-		.append(YANAContract.ArticleColumns.IMAGE_URL).append("' TEXT, '") //
-		.append(YANAContract.ArticleColumns.HEADER).append("' TEXT, '") //
-		.append(YANAContract.ArticleColumns.CONTENT).append("' TEXT, '") //
-		.append(YANAContract.ArticleColumns.AUTHOR).append("' TEXT, '") //
-		.append(YANAContract.ArticleColumns.FEED_ID).append("' INTEGER NOT NULL DEFAULT 0, '") //
-		.append(YANAContract.ArticleColumns.CATEGORY_ID).append("' INTEGER NOT NULL DEFAULT 0, '") //
-		.append(YANAContract.ArticleColumns.TIMESTAMP).append("' TIMESTAMP NOT NULL );") //
-		.toString();
+				.append("CREATE TABLE ").append(YANAContract.Tables.ARTICLE) //
+				.append(" ( '").append(BaseColumns._ID).append("' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '") //
+				.append(YANAContract.ArticleColumns.ID).append("' INTEGER NOT NULL, '") //
+				.append(YANAContract.ArticleColumns.TITLE).append("' TEXT, '") //
+				.append(YANAContract.ArticleColumns.IMAGE_URL).append("' TEXT, '") //
+				.append(YANAContract.ArticleColumns.HEADER).append("' TEXT, '") //
+				.append(YANAContract.ArticleColumns.CONTENT).append("' TEXT, '") //
+				.append(YANAContract.ArticleColumns.AUTHOR).append("' TEXT, '") //
+				.append(YANAContract.ArticleColumns.FEED_ID).append("' INTEGER NOT NULL DEFAULT 0, '") //
+				.append(YANAContract.ArticleColumns.CATEGORY_ID).append("' INTEGER NOT NULL DEFAULT 0, '") //
+				.append(YANAContract.ArticleColumns.TIMESTAMP).append("' TIMESTAMP NOT NULL );") //
+				.toString();
 
 		db.execSQL(articleTable);
 
@@ -54,11 +54,11 @@ public class YANADatabase extends SQLiteOpenHelper {
 
 		/* FEED TABLE */
 		final String feedTable = new StringBuilder() //
-		.append("CREATE TABLE ").append(YANAContract.Tables.FEED) //
-		.append(" ( '").append(BaseColumns._ID).append("' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '") //
-		.append(YANAContract.FeedColumns.ID).append("' INTEGER NOT NULL, '") //
-		.append(YANAContract.FeedColumns.NAME).append("' TEXT );") //
-		.toString();
+				.append("CREATE TABLE ").append(YANAContract.Tables.FEED) //
+				.append(" ( '").append(BaseColumns._ID).append("' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '") //
+				.append(YANAContract.FeedColumns.ID).append("' INTEGER NOT NULL, '") //
+				.append(YANAContract.FeedColumns.NAME).append("' TEXT );") //
+				.toString();
 
 		db.execSQL(feedTable);
 
@@ -80,11 +80,11 @@ public class YANADatabase extends SQLiteOpenHelper {
 
 		/* CATEGORY TABLE */
 		final String categoryTable = new StringBuilder() //
-		.append("CREATE TABLE ").append(YANAContract.Tables.CATEGORY) //
-		.append(" ( '").append(BaseColumns._ID).append("' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '") //
-		.append(YANAContract.CategoryColumns.ID).append("' INTEGER NOT NULL, '") //
-		.append(YANAContract.CategoryColumns.NAME).append("' TEXT );") //
-		.toString();
+				.append("CREATE TABLE ").append(YANAContract.Tables.CATEGORY) //
+				.append(" ( '").append(BaseColumns._ID).append("' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '") //
+				.append(YANAContract.CategoryColumns.ID).append("' INTEGER NOT NULL, '") //
+				.append(YANAContract.CategoryColumns.NAME).append("' TEXT );") //
+				.toString();
 
 		db.execSQL(categoryTable);
 
@@ -109,8 +109,8 @@ public class YANADatabase extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		if (oldVersion == 0) {
 			final String articleTable = new StringBuilder() //
-			.append("DROP TABLE ").append(YANAContract.Tables.ARTICLE) //
-			.toString();
+					.append("DROP TABLE ").append(YANAContract.Tables.ARTICLE) //
+					.toString();
 
 			db.execSQL(articleTable);
 
@@ -119,8 +119,8 @@ public class YANADatabase extends SQLiteOpenHelper {
 			}
 
 			final String feedTable = new StringBuilder() //
-			.append("DROP TABLE ").append(YANAContract.Tables.FEED) //
-			.toString();
+					.append("DROP TABLE ").append(YANAContract.Tables.FEED) //
+					.toString();
 
 			db.execSQL(feedTable);
 
@@ -129,8 +129,8 @@ public class YANADatabase extends SQLiteOpenHelper {
 			}
 
 			final String categoryTable = new StringBuilder() //
-			.append("DROP TABLE ").append(YANAContract.Tables.CATEGORY) //
-			.toString();
+					.append("DROP TABLE ").append(YANAContract.Tables.CATEGORY) //
+					.toString();
 
 			db.execSQL(categoryTable);
 
@@ -144,17 +144,17 @@ public class YANADatabase extends SQLiteOpenHelper {
 
 	private String createFeedInsert(FeedsData.Feed feed) {
 		return new StringBuilder() //
-		.append("INSERT INTO ").append(YANAContract.Tables.FEED) //
-		.append(" ( ").append(YANAContract.FeedColumns.ID).append(", ").append(YANAContract.FeedColumns.NAME).append(" )") //
-		.append(" VALUES ( ").append(feed.id).append(", '").append(feed.name).append("' )") //
-		.toString();
+				.append("INSERT INTO ").append(YANAContract.Tables.FEED) //
+				.append(" ( ").append(YANAContract.FeedColumns.ID).append(", ").append(YANAContract.FeedColumns.NAME).append(" )") //
+				.append(" VALUES ( ").append(feed.id).append(", '").append(feed.name).append("' )") //
+				.toString();
 	}
 
 	private String createCategoryInsert(FeedsData.Category category) {
 		return new StringBuilder() //
-		.append("INSERT INTO ").append(YANAContract.Tables.CATEGORY) //
-		.append(" ( ").append(YANAContract.CategoryColumns.ID).append(", ").append(YANAContract.CategoryColumns.NAME).append(" )") //
-		.append(" VALUES ( ").append(category.id).append(", '").append(category.name).append("' )") //
-		.toString();
+				.append("INSERT INTO ").append(YANAContract.Tables.CATEGORY) //
+				.append(" ( ").append(YANAContract.CategoryColumns.ID).append(", ").append(YANAContract.CategoryColumns.NAME).append(" )") //
+				.append(" VALUES ( ").append(category.id).append(", '").append(category.name).append("' )") //
+				.toString();
 	}
 }

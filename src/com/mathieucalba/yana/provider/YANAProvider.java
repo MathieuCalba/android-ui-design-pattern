@@ -21,7 +21,6 @@ public class YANAProvider extends ContentProvider {
 	protected static UriMatcher mUriMatcher;
 	private static final String SEPARATOR = "/";
 	private static final String NUMBER = "/#";
-	private static final String TEXT = "/*";
 
 	private static final int ARTICLE = 100;
 	private static final int ARTICLE_ID = 104;

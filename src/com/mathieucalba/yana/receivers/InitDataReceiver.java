@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
+
 public final class InitDataReceiver extends BroadcastReceiver {
 
 	public static final String ACTION_INIT_DATA_CHANGE_STATE = "com.mathieucalba.yana.ACTION_INIT_DATA_CHANGE_STATE";
