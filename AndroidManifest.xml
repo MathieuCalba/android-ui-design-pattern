@@ -35,7 +35,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.mathieucalba.yana.ui.activity.FeedItemActivity" />
 
         <service
             android:name="com.mathieucalba.yana.services.YANAService"
