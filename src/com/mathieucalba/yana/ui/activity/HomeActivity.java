@@ -118,7 +118,7 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 		ab.setDisplayHomeAsUpEnabled(false);
 		ab.setDisplayShowHomeEnabled(true);
 		ab.setHomeButtonEnabled(false);
-		ab.setTitle(null);
+		ab.setDisplayShowTitleEnabled(false);
 	}
 
 	public void setRefreshingState(boolean isRefreshing) {
