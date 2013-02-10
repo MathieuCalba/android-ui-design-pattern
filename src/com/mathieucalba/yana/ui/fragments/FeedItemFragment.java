@@ -56,9 +56,9 @@ public class FeedItemFragment extends SherlockFragment implements LoaderCallback
 		if (b != null) {
 			mItemId = b.getInt(EXTRA_ITEM_ID, -1);
 		}
-		// if (mItemId == -1) {
-		// throw new IllegalArgumentException("You must create this fragment with an extra " + EXTRA_ITEM_ID + " using newInstance() method");
-		// }
+		if (mItemId == -1) {
+			throw new IllegalArgumentException("You must create this fragment with an extra " + EXTRA_ITEM_ID + " using newInstance() method");
+		}
 	}
 
 	@Override
@@ -179,16 +179,6 @@ public class FeedItemFragment extends SherlockFragment implements LoaderCallback
 				ab.hide();
 			}
 		}
-	}
-
-	public void setItemId(int itemId) {
-		if (mItemId != -1) {
-			LoaderUtils.destroyLoader(this, LOADER_ID_BASE_FEED_ITEM + mItemId);
-		}
-
-		mItemId = itemId;
-
-		loadArticleDetails();
 	}
 
 }

@@ -1,10 +1,7 @@
 package com.mathieucalba.yana.ui.activity;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -23,7 +20,6 @@ import com.mathieucalba.yana.receivers.InitDataReceiver;
 import com.mathieucalba.yana.receivers.InitDataReceiver.InitDataReceiverListener;
 import com.mathieucalba.yana.ui.adapters.CategoriesMenuAdapter;
 import com.mathieucalba.yana.ui.adapters.FeedKindsTabsAdapter;
-import com.mathieucalba.yana.ui.fragments.FeedItemFragment;
 import com.mathieucalba.yana.utils.LoaderUtils;
 import com.mathieucalba.yana.utils.ServiceUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -40,11 +36,8 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 	private CategoriesMenuAdapter mCategoriesMenuAdapter;
 	private FeedKindsTabsAdapter mFeedKindsTabsAdapter;
 	private TabPageIndicator mTabPageIndicator;
-	private FeedItemFragment mFeedItemFragment;
 	private ViewPager mViewPager;
 	private int mCategoryId = -1;
-
-	private boolean mIsDualPanel = false;
 
 	protected ImageLoader mImageLoader = ImageLoader.getInstance();
 
@@ -62,10 +55,6 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 		setContentView(R.layout.activity_home);
 
 		initActionBar();
-
-		final FragmentManager fm = getSupportFragmentManager();
-		mFeedItemFragment = (FeedItemFragment) fm.findFragmentById(R.id.fragment_feed_item);
-		mIsDualPanel = mFeedItemFragment != null;
 
 		refreshData();
 
@@ -241,16 +230,6 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 	@Override
 	public void onInitChangeState(boolean isRefresing) {
 		setRefreshingState(isRefresing);
-	}
-
-	@Override
-	public void startActivityFromFragment(Fragment fragment, Intent intent, int requestCode) {
-		if (!mIsDualPanel) {
-			super.startActivityFromFragment(fragment, intent, requestCode);
-		} else {
-			final int itemId = intent.getIntExtra(FeedItemFragment.EXTRA_ITEM_ID, -1);
-			mFeedItemFragment.setItemId(itemId);
-		}
 	}
 
 }
