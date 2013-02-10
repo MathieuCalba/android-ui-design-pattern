@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
@@ -16,8 +15,6 @@ import com.actionbarsherlock.view.Window;
 import com.mathieucalba.yana.BuildConfig;
 import com.mathieucalba.yana.R;
 import com.mathieucalba.yana.provider.YANAContract;
-import com.mathieucalba.yana.receivers.InitDataReceiver;
-import com.mathieucalba.yana.receivers.InitDataReceiver.InitDataReceiverListener;
 import com.mathieucalba.yana.ui.adapters.CategoriesMenuAdapter;
 import com.mathieucalba.yana.ui.adapters.FeedKindsTabsAdapter;
 import com.mathieucalba.yana.utils.LoaderUtils;
@@ -26,7 +23,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.viewpagerindicator.TabPageIndicator;
 
 
-public class HomeActivity extends SherlockFragmentActivity implements LoaderCallbacks<Cursor>, OnNavigationListener, InitDataReceiverListener {
+public class HomeActivity extends SherlockFragmentActivity implements LoaderCallbacks<Cursor>, OnNavigationListener {
 
 	private static final String TAG = HomeActivity.class.getSimpleName();
 
@@ -43,9 +40,6 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 
 	private boolean mInstanceStateSaved = true;
 
-	private InitDataReceiver mInitDataReceiver;
-	private LocalBroadcastManager mLocalBroadcastManager;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
@@ -61,30 +55,11 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 		initSpinnerCategories();
 
 		initTabsFeedKind();
-
-		mLocalBroadcastManager = LocalBroadcastManager.getInstance(this);
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-
-		if (mInitDataReceiver == null) {
-			mInitDataReceiver = new InitDataReceiver(this);
-		}
-		mLocalBroadcastManager.registerReceiver(mInitDataReceiver, InitDataReceiver.getIntentFilter());
 	}
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		mInstanceStateSaved = true;
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-
-		mLocalBroadcastManager.unregisterReceiver(mInitDataReceiver);
 	}
 
 	@Override
@@ -225,11 +200,6 @@ public class HomeActivity extends SherlockFragmentActivity implements LoaderCall
 			default:
 				break;
 		}
-	}
-
-	@Override
-	public void onInitChangeState(boolean isRefresing) {
-		setRefreshingState(isRefresing);
 	}
 
 }
