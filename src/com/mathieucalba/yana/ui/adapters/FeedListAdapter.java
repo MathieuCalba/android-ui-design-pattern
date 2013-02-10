@@ -54,4 +54,20 @@ public class FeedListAdapter extends CursorAdapter {
 		view.setData(cursor);
 	}
 
+	@Override
+	public int getItemViewType(int position) {
+		if (mDataValid && mCursor != null) {
+			if (mCursor.moveToPosition(position)) {
+				final int feedId = mCursor.getInt(YANAContract.ArticleTable.PROJ_LIST.FEED_ID);
+				return feedId;
+			}
+		}
+		return super.getItemViewType(position);
+	}
+
+	@Override
+	public int getViewTypeCount() {
+		return 4;
+	}
+
 }
