@@ -35,12 +35,10 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 
 	private int mFeedId = -1;
 	private int mCategoryId = -1;
-	private int mCurrentNbItem = 0;
 	private int mCheckedPosition = -1;
 	private FeedListAdapter mFeedListAdapter;
 
 	private ListView mListView;
-	private View mEmptyView;
 
 	public static FeedListFragment newInstance(int feedId, int categoryId) {
 		final FeedListFragment f = new FeedListFragment();
@@ -79,8 +77,6 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 		mListView = (ListView) v.findViewById(R.id.list_view);
 		mListView.setOnItemClickListener(this);
 		mListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-
-		mEmptyView = v.findViewById(R.id.empty_view);
 
 		return v;
 	}
@@ -151,15 +147,6 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 		final int id = loader.getId();
 		final int realId = id - mFeedId * 100 - mCategoryId;
 		if (realId == LOADER_ID_BASE_FEED_LIST) {
-			if (cursor != null && cursor.moveToFirst()) {
-				mListView.setVisibility(View.VISIBLE);
-				mEmptyView.setVisibility(View.GONE);
-				mCurrentNbItem = cursor.getCount();
-			} else {
-				mListView.setVisibility(View.GONE);
-				mEmptyView.setVisibility(View.VISIBLE);
-				mCurrentNbItem = 0;
-			}
 			mFeedListAdapter.swapCursor(cursor);
 
 			if (mCheckedPosition >= 0) {
@@ -174,7 +161,6 @@ public class FeedListFragment extends SherlockFragment implements LoaderCallback
 		final int realId = id - mFeedId * 100 - mCategoryId;
 		if (realId == LOADER_ID_BASE_FEED_LIST) {
 			mFeedListAdapter.swapCursor(null);
-			mCurrentNbItem = 0;
 		}
 	}
 
