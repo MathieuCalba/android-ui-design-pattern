@@ -36,7 +36,6 @@ public class FeedItemActivity extends SherlockFragmentActivity implements Loader
 	private int mCategoryId = -1;
 	private int mFeedId;
 	private int mCurrentItemId;
-	private int mCurrentItemPosition;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +100,6 @@ public class FeedItemActivity extends SherlockFragmentActivity implements Loader
 		final Bundle b = new Bundle();
 		b.putInt(EXTRA_FEED_ID, mFeedId);
 		b.putInt(EXTRA_CATEGORY_ID, mCategoryId);
-		// b.putInt(EXTRA_NB_ITEM_ID, nbItemToLoad);
 		LoaderUtils.restartLoader(this, LOADER_ID_FEED_LIST + mFeedId * 100 + mCategoryId, b, this);
 	}
 
@@ -121,10 +119,7 @@ public class FeedItemActivity extends SherlockFragmentActivity implements Loader
 						uri = YANAContract.ArticleTable.buildUriWithFeedIdAndCategoryId(feedId, categoryId);
 					}
 
-					// final int limit = b.getInt(EXTRA_NB_ITEM_ID, DEFAULT_NB_ITEM);
-
 					return new CursorLoader(this, uri, YANAContract.ArticleTable.PROJ_LIST.COLS, null, null, YANAContract.ArticleTable.DEFAULT_SORT);
-					// + LIMIT_0_X + limit
 				}
 			}
 		}
@@ -182,7 +177,6 @@ public class FeedItemActivity extends SherlockFragmentActivity implements Loader
 	@Override
 	public void onPageSelected(int position) {
 		getSupportActionBar().setTitle(position + 1 + " / " + mFeedItemAdapter.getCount());
-		mCurrentItemPosition = position;
 	}
 
 }
