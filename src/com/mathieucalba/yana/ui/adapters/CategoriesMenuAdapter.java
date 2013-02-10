@@ -42,18 +42,7 @@ public class CategoriesMenuAdapter extends CursorAdapter {
 
 	@Override
 	public View getDropDownView(int position, View convertView, ViewGroup parent) {
-		if (position > 0) {
-			return super.getDropDownView(position - 1, convertView, parent);
-		} else {
-			View v;
-			if (convertView == null) {
-				v = newDropDownView(mContext, null, parent);
-			} else {
-				v = convertView;
-			}
-			bindView(v, mContext, null);
-			return v;
-		}
+		return getView(position, convertView, parent);
 	}
 
 	@Override
@@ -68,18 +57,7 @@ public class CategoriesMenuAdapter extends CursorAdapter {
 	}
 
 	@Override
-	public View newDropDownView(Context context, Cursor cursor, ViewGroup parent) {
-		final TextView v = (TextView) mInflater.inflate(R.layout.item_menu_action_bar, parent, false);
-		return v;
-	}
-
-	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
-		final TextView txt = (TextView) view;
-		txt.setText(cursor != null ? cursor.getString(YANAContract.CategoryTable.PROJ.NAME) : mContext.getString(R.string.categories_all));
-	}
-
-	public void bindDropDownView(View view, Context context, Cursor cursor) {
 		final TextView txt = (TextView) view;
 		txt.setText(cursor != null ? cursor.getString(YANAContract.CategoryTable.PROJ.NAME) : mContext.getString(R.string.categories_all));
 	}
