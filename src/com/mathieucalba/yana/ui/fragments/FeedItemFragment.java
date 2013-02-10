@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
@@ -34,7 +33,6 @@ public class FeedItemFragment extends SherlockFragment implements LoaderCallback
 	private static final int LOADER_ID_BASE_FEED_ITEM = 1301292000;
 
 	private GestureWebView mWebView;
-	private TextView mEmptyText;
 	private int mItemId = -1;
 	private Cursor mCursor;
 
@@ -68,7 +66,6 @@ public class FeedItemFragment extends SherlockFragment implements LoaderCallback
 		mWebView.init(this);
 		mWebView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
-		mEmptyText = (TextView) v.findViewById(R.id.empty_text_item);
 		return v;
 	}
 
@@ -80,17 +77,9 @@ public class FeedItemFragment extends SherlockFragment implements LoaderCallback
 	}
 
 	private void loadArticleDetails() {
-		if (mItemId == -1) {
-			mEmptyText.setVisibility(View.VISIBLE);
-			mWebView.setVisibility(View.GONE);
-		} else {
-			mEmptyText.setVisibility(View.GONE);
-			mWebView.setVisibility(View.VISIBLE);
-
-			final Bundle b = new Bundle();
-			b.putInt(EXTRA_ITEM_ID, mItemId);
-			LoaderUtils.restartLoader(this, LOADER_ID_BASE_FEED_ITEM + mItemId, b, this);
-		}
+		final Bundle b = new Bundle();
+		b.putInt(EXTRA_ITEM_ID, mItemId);
+		LoaderUtils.restartLoader(this, LOADER_ID_BASE_FEED_ITEM + mItemId, b, this);
 	}
 
 	@Override
