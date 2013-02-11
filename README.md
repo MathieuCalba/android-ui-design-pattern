@@ -5,22 +5,23 @@ Code of the Application Demo I used for my presentation Android UI Design Patter
 It's a simple news app with categories, different kind of articles (News, Briefs, Tests and Report).
 
 There is 6 steps tagged :
-step-1 :
+
+- step-1 :
 Adding the ActionBarSherlock library and setting the project and the database & provider
 
-step-2 :
+- step-2 :
 Adding categories and feed kinds management
 
-step-3 :
+- step-3 :
 Adding list of feed item
 
-step-4 :
+- step-4 :
 Adding detail screen
 
-step-5 :
+- step-5 :
 adding empty views and progress bar
 
-step-6 :
+- step-6 :
 Tablet verison
 
 
